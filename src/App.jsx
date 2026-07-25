@@ -105,7 +105,7 @@ const UI = {
 /* ---------------------------------------------------------
    PRODUCTS — each with distinct trigger + output for its flow visual
 --------------------------------------------------------- */
-const PRODUCTS = [
+const FALLBACK_PRODUCTS = [
   { id: "B1", seg: "business", icon: MessageCircle, outIcon: MessageCircle, en: { name: "Lead Alert", hook: "Someone contacts you — WhatsApp instantly", before: "Leads sit in an inbox for hours before anyone replies.", after: "Every lead reaches you on WhatsApp within seconds, while their interest is still warm.", need: "Your form or lead source, plus a WhatsApp number.", inLabel: "New lead", outLabel: "WhatsApp alert" }, ar: { name: "تنبيه العميل المحتمل", hook: "شخص يتواصل معك — واتساب فوراً", before: "العملاء المحتملون ينتظرون ساعات قبل أن يرد أحد.", after: "كل عميل محتمل يصلك على واتساب خلال ثوانٍ.", need: "نموذجك أو مصدر العملاء، ورقم واتساب.", inLabel: "عميل جديد", outLabel: "تنبيه واتساب" } },
   { id: "B2", seg: "business", icon: Receipt, outIcon: Grid3x3, en: { name: "Invoice Scanner", hook: "Photo any invoice — data logged automatically", before: "Someone retypes every invoice into a spreadsheet by hand.", after: "A photo becomes a logged, categorized entry in seconds.", need: "Where invoices arrive and your bookkeeping sheet.", inLabel: "Invoice", outLabel: "Logged entry" }, ar: { name: "ماسح الفواتير", hook: "صوّر أي فاتورة — تُسجَّل تلقائياً", before: "شخص يعيد كتابة كل فاتورة يدوياً في جدول بيانات.", after: "الصورة تتحول إلى قيد مصنّف خلال ثوانٍ.", need: "مكان وصول الفواتير وجدول الحسابات.", inLabel: "فاتورة", outLabel: "قيد مسجّل" } },
   { id: "B3", seg: "business", icon: BarChart3, outIcon: BarChart3, en: { name: "Daily Business Report", hook: "8am WhatsApp — yesterday's numbers", before: "You call around each morning just to find out how yesterday went.", after: "One WhatsApp at 8am tells you sales, top product, and team status.", need: "Access to your sales data and morning send time.", inLabel: "Sales data", outLabel: "Daily report" }, ar: { name: "التقرير اليومي للأعمال", hook: "واتساب الساعة 8 صباحاً — أرقام الأمس", before: "تتصل كل صباح لمعرفة كيف سار العمل بالأمس.", after: "رسالة واحدة الساعة 8 صباحاً: المبيعات وأفضل منتج.", need: "الوصول لبيانات المبيعات ووقت الإرسال.", inLabel: "بيانات المبيعات", outLabel: "تقرير يومي" } },
@@ -133,6 +133,38 @@ const PRODUCTS = [
   { id: "H5", seg: "health", icon: LineChart, outIcon: LineChart, en: { name: "Weekly Health Summary", hook: "Sunday WhatsApp — patterns, not just numbers", before: "No big-picture view of your habits over time.", after: "One Sunday message: best/worst days and one real insight.", need: "A few weeks of logged data to build patterns from.", inLabel: "Week's data", outLabel: "Weekly insight" }, ar: { name: "الملخص الصحي الأسبوعي", hook: "واتساب الأحد — أنماط لا أرقام فقط", before: "لا رؤية شاملة لعاداتك عبر الوقت.", after: "رسالة أحد واحدة: أفضل وأسوأ الأيام ورؤية حقيقية.", need: "بضعة أسابيع من البيانات المسجّلة.", inLabel: "بيانات الأسبوع", outLabel: "رؤية أسبوعية" } },
 ];
 
+/* ---------------------------------------------------------
+   ICON_MAP — mirrors the ICON_REGISTRY tab exactly.
+   Fetched products carry icon_key/out_icon_key strings (a Sheet cell
+   can't hold a component); this is what turns that string back into
+   a real icon. Add a row here + in ICON_REGISTRY together, always.
+--------------------------------------------------------- */
+const ICON_MAP = {
+  message_circle: MessageCircle, receipt: Receipt, bar_chart: BarChart3, calendar_clock: CalendarClock,
+  star: Star, sparkles: Sparkles, share: Share2, newspaper: Newspaper, calendar_days: CalendarDays,
+  handshake: Handshake, bell: Bell, file_search: FileSearch, timer: Timer, mail: Mail,
+  clipboard_check: ClipboardCheck, calendar_check: CalendarCheck2, wallet: Wallet, pill: Pill,
+  clipboard_list: ClipboardList, camera: Camera, moon: Moon, activity: Activity, droplet: Droplet,
+  line_chart: LineChart, sun: Sun, grid: Grid3x3, check: Check, utensils: Utensils,
+};
+
+// Replace this with your real n8n webhook once SYSTEM_ProductLibraryFetcher exists
+// (same pattern as CONFIG_API in taskless-forms). Left as a placeholder, the site
+// silently keeps using FALLBACK_PRODUCTS below — nothing breaks today.
+const PRODUCTS_API = "REPLACE_WITH_YOUR_N8N_URL/webhook/products";
+const REQUESTS_API = "https://script.google.com/macros/s/AKfycbx6aL1k1GnAuYD2ca2KGgSTN1G5EJSoDLFqyMihp8orCXsRYFZoOyOGPAxp_t8Mlp36/exec";
+
+// Converts one row from the LIBRARY sheet (icon_key strings) into the shape
+// every component below already expects (real icon components).
+function normalizeProduct(raw) {
+  return {
+    id: raw.id, seg: raw.segment,
+    icon: ICON_MAP[raw.icon_key] || Sparkles,
+    outIcon: ICON_MAP[raw.out_icon_key] || Sparkles,
+    en: raw.en, ar: raw.ar,
+  };
+}
+
 function shuffle(arr) { const a = [...arr]; for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
 function useReveal() {
   const ref = useRef(null); const [inView, setInView] = useState(false);
@@ -153,8 +185,21 @@ export default function TasklessLanding() {
   const [lang, setLang] = useState("en");
   const [menuOpen, setMenuOpen] = useState(false);
   const t = UI[lang]; const rtl = lang === "ar"; const th = THEMES[theme];
-  const featured = useMemo(() => shuffle(PRODUCTS).slice(0, 5), []);
+  const [products, setProducts] = useState(FALLBACK_PRODUCTS);
+  useEffect(() => {
+    if (PRODUCTS_API.startsWith("REPLACE_WITH")) return; // not wired up yet — fallback data stays active
+    fetch(PRODUCTS_API)
+      .then((r) => r.json())
+      .then((data) => {
+        if (Array.isArray(data?.products) && data.products.length) {
+          setProducts(data.products.map(normalizeProduct));
+        }
+      })
+      .catch(() => { /* network/CORS issue — fallback data stays active, site keeps working */ });
+  }, []);
+  const featured = useMemo(() => shuffle(products).slice(0, 5), [products]);
   const [active, setActive] = useState(null);
+  const [requestContext, setRequestContext] = useState({ source: "Website — General Inquiry", product_id: "" });
   const [view, setView] = useState("home");
   const [openFaq, setOpenFaq] = useState(0);
   const [railRef, railIn] = useReveal();
@@ -195,7 +240,7 @@ export default function TasklessLanding() {
                 <TLogo size={26} /><span className="display" style={{ fontWeight: 700, fontSize: 18, letterSpacing: -0.3 }}>Taskless</span>
               </div>
               <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                <button style={btnPrimary} onClick={() => scrollToId("section-contact")}>{t.cta}</button>
+                <button style={btnPrimary} onClick={() => { setRequestContext({ source: "Website — General Inquiry", product_id: "" }); scrollToId("section-contact"); }}>{t.cta}</button>
                 <IconToggle onClick={() => setMenuOpen(!menuOpen)} th={th} label="Menu"><Menu size={18} /></IconToggle>
               </div>
             </div>
@@ -258,16 +303,16 @@ export default function TasklessLanding() {
             </div>
           </section>
 
-          <ContactSection t={t} th={th} rtl={rtl} />
+          <ContactSection t={t} th={th} rtl={rtl} lang={lang} requestContext={requestContext} />
 
           <Footer t={t} th={th} rtl={rtl} openFaq={openFaq} setOpenFaq={setOpenFaq} />
         </>
       ) : (
-        <CatalogView t={t} th={th} rtl={rtl} lang={lang} onBack={() => setView("home")} onOpen={(p) => setActive(p)} />
+        <CatalogView products={products} t={t} th={th} rtl={rtl} lang={lang} onBack={() => setView("home")} onOpen={(p) => setActive(p)} />
       )}
       </div>
 
-      {active && <DetailDrawer product={active} lang={lang} rtl={rtl} th={th} t={t} onClose={() => setActive(null)} />}
+      {active && <DetailDrawer product={active} lang={lang} rtl={rtl} th={th} t={t} onClose={() => setActive(null)} onRequest={() => setRequestContext({ source: "Website — Product Drawer", product_id: active.id })} />}
     </div>
   );
 }
@@ -372,7 +417,7 @@ function ProductCard({ p, i, inView, lang, rtl, th, t, onOpen }) {
     </div>
   );
 }
-function DetailDrawer({ product, lang, rtl, th, t, onClose }) {
+function DetailDrawer({ product, lang, rtl, th, t, onClose, onRequest }) {
   const color = SEGMENT_COLORS[product.seg]; const d = product[lang]; const Icon = product.icon;
   return (
     <div style={{ position: "fixed", inset: 0, zIndex: 50, display: "flex", alignItems: "flex-end", justifyContent: "center" }}>
@@ -388,7 +433,7 @@ function DetailDrawer({ product, lang, rtl, th, t, onClose }) {
         <Block label={t.drawer.before} text={d.before} th={th} />
         <Block label={t.drawer.after} text={d.after} color={color} th={th} />
         <Block label={t.drawer.need} text={d.need} th={th} />
-        <button style={{ ...btnPrimary, width: "100%", marginTop: 12, justifyContent: "center" }} onClick={() => { onClose(); setTimeout(() => scrollToId("section-contact"), 60); }}>{t.drawer.cta} <ArrowRight size={16} style={{ [rtl ? "marginRight" : "marginLeft"]: 6, transform: rtl ? "rotate(180deg)" : "none" }} /></button>
+        <button style={{ ...btnPrimary, width: "100%", marginTop: 12, justifyContent: "center" }} onClick={() => { onRequest(); onClose(); setTimeout(() => scrollToId("section-contact"), 60); }}>{t.drawer.cta} <ArrowRight size={16} style={{ [rtl ? "marginRight" : "marginLeft"]: 6, transform: rtl ? "rotate(180deg)" : "none" }} /></button>
       </div>
     </div>
   );
@@ -396,14 +441,14 @@ function DetailDrawer({ product, lang, rtl, th, t, onClose }) {
 function Block({ label, text, color, th }) {
   return <div style={{ marginBottom: 20 }}><div style={{ fontSize: 12, letterSpacing: 0.5, color: color || th.muted2, fontWeight: 600, marginBottom: 6 }}>{label}</div><p style={{ fontSize: 14.5, lineHeight: 1.6, color: th.muted, margin: 0 }}>{text}</p></div>;
 }
-function CatalogView({ t, th, rtl, lang, onBack, onOpen }) {
+function CatalogView({ products, t, th, rtl, lang, onBack, onOpen }) {
   return (
     <div style={{ maxWidth: 1180, margin: "0 auto", padding: "40px 24px 100px", textAlign: rtl ? "right" : "left" }}>
       <button onClick={onBack} style={{ background: "none", border: "none", color: "#06B6D4", fontSize: 14, cursor: "pointer", marginBottom: 24, gap: 6 }}>{rtl ? "→" : "←"} {t.back}</button>
       <h2 className="display" style={{ fontSize: 28, fontWeight: 700, marginBottom: 8 }}>{t.catalogTitle}</h2>
       <p style={{ color: th.muted2, marginBottom: 34 }}>{t.catalogSub}</p>
       <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(250px,1fr))", gap: 18 }}>
-        {PRODUCTS.map((p) => { const d = p[lang]; const color = SEGMENT_COLORS[p.seg]; const Icon = p.icon; return (
+        {products.map((p) => { const d = p[lang]; const color = SEGMENT_COLORS[p.seg]; const Icon = p.icon; return (
           <div key={p.id} style={{ borderRadius: 16, padding: 20, background: th.elevated, border: `1px solid ${th.border}` }}>
             <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 10 }}><span style={{ width: 6, height: 6, borderRadius: "50%", background: color }} /><span style={{ fontSize: 10.5, letterSpacing: 1, textTransform: "uppercase", color: th.muted3 }}>{t.segLabels[p.seg]}</span></div>
             <h3 className="display" style={{ fontSize: 16, fontWeight: 700, margin: "0 0 6px" }}>{d.name}</h3>
@@ -416,7 +461,7 @@ function CatalogView({ t, th, rtl, lang, onBack, onOpen }) {
     </div>
   );
 }
-function ContactSection({ t, th, rtl }) {
+function ContactSection({ t, th, rtl, lang, requestContext }) {
   const [form, setForm] = useState({ name: "", mobile: "", email: "", message: "" });
   const [sent, setSent] = useState(false);
   const [error, setError] = useState(false);
@@ -424,6 +469,17 @@ function ContactSection({ t, th, rtl }) {
   const submit = () => {
     if (!form.name.trim() || !form.mobile.trim() || !form.message.trim()) { setError(true); return; }
     setError(false); setSent(true);
+    const payload = { ...form, source: requestContext.source, product_id: requestContext.product_id, language: lang };
+    if (!REQUESTS_API.startsWith("REPLACE_WITH")) {
+      // Content-Type: text/plain is deliberate — it keeps this a CORS "simple request"
+      // (no preflight), which Apps Script web apps can't reliably answer. The body is
+      // still valid JSON; doPost on the other end parses it as JSON regardless.
+      fetch(REQUESTS_API, {
+        method: "POST",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify(payload),
+      }).catch((err) => console.error("Request submission failed:", err));
+    }
   };
   const reset = () => { setForm({ name: "", mobile: "", email: "", message: "" }); setSent(false); setError(false); };
   return (
