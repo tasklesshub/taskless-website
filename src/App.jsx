@@ -44,24 +44,34 @@ const OUTER_TOOLS = [
 const UI = {
   en: {
     cta: "Get in touch", segLabels: { business: "Business", creators: "Creators", students: "Students", parents: "Parents", health: "Health" },
-    menu: { home: "Home", products: "Products", why: "Why Taskless", contact: "Get in touch", faq: "FAQ" },
+    menu: { home: "Home", products: "Products", how: "How it works", why: "Why Taskless", contact: "Get in touch", faq: "FAQ" },
     heroBadge: "Automation, connected", heroLine1: "Your to-do list", heroLine2: "just disappeared.",
-    heroSub: "We connect the tools you already use into one quiet system that runs itself. Built in 48 hours. No code required.",
-    heroCta: "See what we automate", scroll: "Scroll",
-    railEyebrow: "Today's picks", railTitle: "A few things we could take off your plate", swipeHint: "swipe to browse", viewAll: "View all 25", seeMore: "See more",
+    heroSub: "We connect the tools you already use into AI-powered workflows that eliminate repetitive work, cut mistakes, and save hours every week — delivered in 48 hours, no coding required.",
+    heroCta: "Browse Workflows", scroll: "Scroll",
+    integrationsLabel: "Works with the tools you already use", moreTools: "+ 7 more",
+    railEyebrow: "Popular Workflows", railTitle: "Ready-to-use automations", railIntro: "Each one solves a repetitive problem a real business runs into every week.", swipeHint: "swipe to browse", viewAll: "View all 25", seeMore: "View Workflow",
+    deliverySimple: "24–48h", deliveryStandard: "48h min", deliveryComplex: "48–72h",
     automateLabel: "Automate", viaWhatsapp: "Delivered via WhatsApp",
     trust: [
-      { t: "48 hours, not weeks", b: "Every workflow goes from request to running in two days." },
-      { t: "Your data, isolated", b: "Per-client credentials. Nothing crosses between accounts, ever." },
-      { t: "Built for Qatar", b: "WhatsApp-native, bilingual EN/AR, priced in QAR." },
-      { t: "Nothing to install", b: "You never touch a dashboard. You just get the result." },
+      { t: "48 Hours", b: "Delivered", d: "Every workflow goes from request to running in two days." },
+      { t: "Your Data", b: "Stays yours", d: "Per-client credentials. Nothing crosses between accounts, ever." },
+      { t: "Built for Qatar", b: "Locally rooted", d: "WhatsApp-native, bilingual EN/AR, priced in QAR." },
+      { t: "Zero Setup", b: "On your end", d: "You never touch a dashboard. You just get the result." },
     ],
-    inquiryTitle: "Tell us what's eating your time", inquirySub: "No pricing on the page — we'll reply on WhatsApp within 24 hours with a plan.",
+    howEyebrow: "How it works", howTitle: "From problem to running automation",
+    howSteps: [
+      { t: "Tell us the task", d: "Describe the repetitive work you want gone — a form, a message, or a quick call." },
+      { t: "We design the automation", d: "We map it, build it, and test it against your real accounts." },
+      { t: "You get your time back", d: "It runs quietly in the background. You just see the result." },
+    ],
+    pricingTitle: "Why isn't there pricing on this page?", pricingBody: "Every business runs on a different mix of tools and workflows, so each automation is scoped to fit yours. Tell us what you need below and we'll come back with a clear, fixed quote.",
+    inquiryTitle: "Tell us what's eating your time", inquirySub: "No pricing on the page — we'll get back to you within 24 hours with a plan.",
     namePh: "Your name", mobilePh: "Mobile number", emailPh: "Email address", descPh: "What would you like automated?", send: "Send inquiry",
     formError: "Please fill in your name, mobile number, and message.",
-    successTitle: "Got it — thank you.", successBody: "We'll reply on WhatsApp within 24 hours with a plan.", sendAnother: "Send another",
+    successTitle: "Got it — thank you.", successBody: "We'll get back to you within 24 hours with a plan.", sendAnother: "Send another",
     footAbout: "Automation-as-a-service for Qatar and the GCC. We eliminate manual repetitive work — no technical knowledge required from you.",
-    faqTitle: "FAQ",
+    footBrandLine: "Time belongs to people, not repetitive work.", copyright: "Powered by Taskless · © 2026 All rights reserved.",
+    faqTitle: "FAQ", legalTitle: "Legal", privacy: "Privacy Policy", terms: "Terms of Service",
     faqs: [
       { q: "Do I need any technical knowledge?", a: "No. You connect your accounts once through a guided process — we handle everything after that." },
       { q: "How fast is delivery?", a: "48 hours or less from agreed scope to a running workflow." },
@@ -69,28 +79,39 @@ const UI = {
     ],
     tagline: "Taskless — Your to-do list just disappeared.",
     drawer: { before: "Before Taskless", after: "After Taskless", need: "What we need from you", cta: "Get this running for me" },
-    catalogTitle: "All workflows", catalogSub: "25 workflows, shown together for now — filters by category are coming soon.", back: "Back",
+    catalogTitle: "All workflows", catalogSub: "25 workflows — search or filter by category to find yours.", back: "Back",
+    searchPh: "Search workflows...", allCategories: "All",
   },
   ar: {
     cta: "تواصل معنا", segLabels: { business: "أعمال", creators: "مبدعون", students: "طلاب", parents: "أهالي", health: "صحة" },
-    menu: { home: "الرئيسية", products: "الخدمات", why: "لماذا Taskless", contact: "تواصل معنا", faq: "الأسئلة الشائعة" },
+    menu: { home: "الرئيسية", products: "الخدمات", how: "كيف نعمل", why: "لماذا Taskless", contact: "تواصل معنا", faq: "الأسئلة الشائعة" },
     heroBadge: "أتمتة متصلة", heroLine1: "قائمة مهامك", heroLine2: "اختفت للتو.",
-    heroSub: "نربط الأدوات التي تستخدمها فعلاً في نظام هادئ يعمل بنفسه. يُبنى خلال 48 ساعة. بلا برمجة.",
-    heroCta: "شاهد ما نؤتمته", scroll: "مرر للأسفل",
-    railEyebrow: "مقترحات اليوم", railTitle: "بعض الأشياء التي يمكننا إنجازها عنك", swipeHint: "اسحب للتصفح", viewAll: "عرض الكل (25)", seeMore: "المزيد",
+    heroSub: "نربط الأدوات التي تستخدمها فعلاً في أتمتة مدعومة بالذكاء الاصطناعي تُلغي العمل المتكرر، تقلل الأخطاء، وتوفر ساعات كل أسبوع — تُسلَّم خلال 48 ساعة، بلا برمجة.",
+    heroCta: "تصفح الأتمتة", scroll: "مرر للأسفل",
+    integrationsLabel: "يعمل مع الأدوات التي تستخدمها فعلاً", moreTools: "+ 7 أدوات أخرى",
+    railEyebrow: "الأتمتة الأكثر طلباً", railTitle: "أتمتة جاهزة للاستخدام", railIntro: "كل واحدة تحل مشكلة متكررة يواجهها أي عمل كل أسبوع.", swipeHint: "اسحب للتصفح", viewAll: "عرض الكل (25)", seeMore: "عرض الأتمتة",
+    deliverySimple: "24–48 ساعة", deliveryStandard: "48 ساعة كحد أدنى", deliveryComplex: "48–72 ساعة",
     automateLabel: "أتمتة", viaWhatsapp: "يُسلَّم عبر واتساب",
     trust: [
-      { t: "48 ساعة، لا أسابيع", b: "كل أتمتة تنتقل من الطلب إلى التشغيل خلال يومين." },
-      { t: "بياناتك، معزولة", b: "بيانات اعتماد مستقلة لكل عميل. لا تداخل بين الحسابات أبداً." },
-      { t: "مصمم لقطر", b: "يعمل عبر واتساب، ثنائي اللغة عربي/إنجليزي، بالريال القطري." },
-      { t: "لا شيء يُثبَّت", b: "لا تلمس أي لوحة تحكم أبداً. تستلم النتيجة فقط." },
+      { t: "48 ساعة", b: "التسليم", d: "كل أتمتة تنتقل من الطلب إلى التشغيل خلال يومين." },
+      { t: "بياناتك", b: "تبقى لك", d: "بيانات اعتماد مستقلة لكل عميل. لا تداخل بين الحسابات أبداً." },
+      { t: "مصمم لقطر", b: "جذور محلية", d: "يعمل عبر واتساب، ثنائي اللغة عربي/إنجليزي، بالريال القطري." },
+      { t: "بلا إعداد", b: "من جانبك", d: "لا تلمس أي لوحة تحكم أبداً. تستلم النتيجة فقط." },
     ],
-    inquiryTitle: "أخبرنا بما يستهلك وقتك", inquirySub: "لا أسعار في الصفحة — سنرد عبر واتساب خلال 24 ساعة بخطة عمل.",
+    howEyebrow: "كيف نعمل", howTitle: "من المشكلة إلى الأتمتة الجاهزة",
+    howSteps: [
+      { t: "أخبرنا بالمهمة", d: "صف العمل المتكرر الذي تريد التخلص منه — نموذج، رسالة، أو مكالمة سريعة." },
+      { t: "نصمم الأتمتة", d: "نخطط لها، نبنيها، ونختبرها على حساباتك الحقيقية." },
+      { t: "تستعيد وقتك", d: "تعمل بهدوء في الخلفية. أنت فقط ترى النتيجة." },
+    ],
+    pricingTitle: "لماذا لا توجد أسعار في هذه الصفحة؟", pricingBody: "كل عمل يستخدم مزيجاً مختلفاً من الأدوات وسير العمل، لذا نصمم كل أتمتة لتناسبك تحديداً. أخبرنا بما تحتاجه أدناه وسنعود إليك بعرض سعر واضح وثابت.",
+    inquiryTitle: "أخبرنا بما يستهلك وقتك", inquirySub: "لا أسعار في الصفحة — سنرد عليك خلال 24 ساعة بخطة عمل.",
     namePh: "اسمك", mobilePh: "رقم الجوال", emailPh: "البريد الإلكتروني", descPh: "ماذا تريد أن نؤتمت؟", send: "إرسال الطلب",
     formError: "يرجى تعبئة الاسم ورقم الجوال والرسالة.",
-    successTitle: "تم الاستلام — شكراً لك.", successBody: "سنرد عبر واتساب خلال 24 ساعة بخطة عمل.", sendAnother: "إرسال طلب آخر",
+    successTitle: "تم الاستلام — شكراً لك.", successBody: "سنرد عليك خلال 24 ساعة بخطة عمل.", sendAnother: "إرسال طلب آخر",
     footAbout: "خدمة أتمتة لقطر ودول الخليج. نلغي العمل اليدوي المتكرر — دون الحاجة لمعرفة تقنية منك.",
-    faqTitle: "الأسئلة الشائعة",
+    footBrandLine: "الوقت ملك للناس، لا للعمل المتكرر.", copyright: "بدعم من Taskless · © 2026 جميع الحقوق محفوظة.",
+    faqTitle: "الأسئلة الشائعة", legalTitle: "قانوني", privacy: "سياسة الخصوصية", terms: "شروط الخدمة",
     faqs: [
       { q: "هل أحتاج إلى معرفة تقنية؟", a: "لا. تربط حساباتك مرة واحدة عبر خطوات موجهة — ونتولى الباقي." },
       { q: "ما مدى سرعة التسليم؟", a: "48 ساعة أو أقل من تحديد النطاق إلى تشغيل الأتمتة." },
@@ -98,7 +119,8 @@ const UI = {
     ],
     tagline: "Taskless — قائمة مهامك اختفت للتو.",
     drawer: { before: "قبل Taskless", after: "بعد Taskless", need: "ماذا نحتاج منك", cta: "فعّل هذا لي" },
-    catalogTitle: "كل الأتمتة", catalogSub: "25 أتمتة، معروضة معاً حالياً — التصنيف حسب الفئة قادم قريباً.", back: "رجوع",
+    catalogTitle: "كل الأتمتة", catalogSub: "25 أتمتة — ابحث أو صفّ حسب الفئة لتجد ما يناسبك.", back: "رجوع",
+    searchPh: "ابحث في الأتمتة...", allCategories: "الكل",
   },
 };
 
@@ -166,6 +188,17 @@ function normalizeProduct(raw) {
 }
 
 function shuffle(arr) { const a = [...arr]; for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+
+// Delivery-time estimate per workflow — a stated assumption, not a fabricated stat.
+// SIMPLE: single trigger, single alert, minimal logic. COMPLEX: multi-platform,
+// AI vision/summarization, or multi-step confirmation loops. Everything else = standard.
+const SIMPLE_DELIVERY_IDS = new Set(["B1", "B5", "S1", "S4", "P2", "H2", "H4"]);
+const COMPLEX_DELIVERY_IDS = new Set(["C1", "C2", "B2", "S2", "P4", "H1", "H3"]);
+function deliveryLabel(id, t) {
+  if (SIMPLE_DELIVERY_IDS.has(id)) return t.deliverySimple;
+  if (COMPLEX_DELIVERY_IDS.has(id)) return t.deliveryComplex;
+  return t.deliveryStandard;
+}
 function useReveal() {
   const ref = useRef(null); const [inView, setInView] = useState(false);
   useEffect(() => {
@@ -225,6 +258,14 @@ export default function TasklessLanding() {
         @keyframes hubglow { 0%,100% { opacity:.5;} 50% { opacity:1;} }
         @keyframes popin { from { opacity:0; transform: scale(.9);} to { opacity:1; transform: scale(1);} }
         .hero-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 30px; align-items: center; }
+        .card-hover:hover { transform: translateY(-4px) !important; box-shadow: 0 16px 32px rgba(0,0,0,0.18); border-color: #06B6D460 !important; }
+        .integration-chip:hover { border-color: #06B6D4 !important; }
+        .cta-hover { transition: transform .2s ease, box-shadow .2s ease; }
+        .cta-hover:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(37,99,235,0.35); }
+        .filter-pill { transition: all .2s ease; }
+        .filter-pill:hover { border-color: #06B6D4 !important; }
+        .footer-grid { display: grid; grid-template-columns: 1.3fr 1fr 0.7fr; gap: 50px; }
+        @media (max-width: 700px) { .footer-grid { grid-template-columns: 1fr; gap: 32px; } }
         @media (max-width: 900px) { .hero-grid { grid-template-columns: 1fr; } .hero-diagram { order: -1; margin-bottom: 4px; } }
         @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
       `}</style>
@@ -240,7 +281,7 @@ export default function TasklessLanding() {
                 <TLogo size={26} /><span className="display" style={{ fontWeight: 700, fontSize: 18, letterSpacing: -0.3 }}>Taskless</span>
               </div>
               <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                <button style={btnPrimary} onClick={() => { setRequestContext({ source: "Website — General Inquiry", product_id: "" }); scrollToId("section-contact"); }}>{t.cta}</button>
+                <button className="cta-hover" style={btnPrimary} onClick={() => { setRequestContext({ source: "Website — General Inquiry", product_id: "" }); scrollToId("section-contact"); }}>{t.cta}</button>
                 <IconToggle onClick={() => setMenuOpen(!menuOpen)} th={th} label="Menu"><Menu size={18} /></IconToggle>
               </div>
             </div>
@@ -248,7 +289,7 @@ export default function TasklessLanding() {
               <div style={{ borderTop: `1px solid ${th.border}`, background: th.elevated }}>
                 <div style={{ maxWidth: 1180, margin: "0 auto", padding: "18px 24px", display: "flex", flexWrap: "wrap", gap: 10, alignItems: "center", justifyContent: "space-between" }}>
                   <nav style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
-                    {[["section-hero", t.menu.home], ["section-products", t.menu.products], ["section-why", t.menu.why], ["section-contact", t.menu.contact], ["section-faq", t.menu.faq]].map(([id, label]) => (
+                    {[["section-hero", t.menu.home], ["section-products", t.menu.products], ["section-how", t.menu.how || "How it works"], ["section-why", t.menu.why], ["section-contact", t.menu.contact], ["section-faq", t.menu.faq]].map(([id, label]) => (
                       <button key={id} className="menu-link" onClick={() => scrollToId(id, () => setMenuOpen(false))} style={{ background: "none", border: "none", color: th.text, fontSize: 14.5, fontWeight: 600, padding: "8px 12px", borderRadius: 8, cursor: "pointer" }}>{label}</button>
                     ))}
                   </nav>
@@ -270,7 +311,21 @@ export default function TasklessLanding() {
                 <span style={{ display: "inline-flex", alignItems: "center", gap: 6, fontSize: 12, fontWeight: 600, letterSpacing: 1, textTransform: "uppercase", color: "#06B6D4", background: th.elevated, border: `1px solid ${th.borderStrong}`, borderRadius: 20, padding: "6px 14px", marginBottom: 22 }}><Sparkles size={13} /> {t.heroBadge}</span>
                 <h1 className="display" style={{ fontSize: "clamp(32px,5vw,52px)", fontWeight: 700, lineHeight: 1.1, margin: "0 0 18px", letterSpacing: rtl ? 0 : -1 }}>{t.heroLine1}<br /><span style={{ background: "linear-gradient(90deg,#2563EB,#06B6D4)", WebkitBackgroundClip: "text", backgroundClip: "text", color: "transparent" }}>{t.heroLine2}</span></h1>
                 <p style={{ maxWidth: 440, fontSize: 16.5, color: th.muted, lineHeight: 1.7, margin: rtl ? "0 0 30px auto" : "0 30px 30px 0" }}>{t.heroSub}</p>
-                <button style={{ ...btnPrimary, padding: "14px 28px", fontSize: 15 }} onClick={() => scrollToId("section-products")}>{t.heroCta} <ArrowRight size={16} style={{ [rtl ? "marginRight" : "marginLeft"]: 6, transform: rtl ? "rotate(180deg)" : "none" }} /></button>
+                <button className="cta-hover" style={{ ...btnPrimary, padding: "14px 28px", fontSize: 15 }} onClick={() => scrollToId("section-products")}>{t.heroCta} <ArrowRight size={16} style={{ [rtl ? "marginRight" : "marginLeft"]: 6, transform: rtl ? "rotate(180deg)" : "none" }} /></button>
+
+                <div style={{ marginTop: 34 }}>
+                  <span style={{ fontSize: 11.5, letterSpacing: 0.5, color: th.muted3, display: "block", marginBottom: 12 }}>{t.integrationsLabel}</span>
+                  <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+                    {[...INNER_TOOLS.slice(0, 5), ...OUTER_TOOLS.slice(0, 3)].map((tool, i) => (
+                      <span key={i} className="integration-chip" style={{ display: "inline-flex", alignItems: "center", gap: 6, fontSize: 12.5, fontWeight: 600, color: th.muted2, background: th.elevated, border: `1px solid ${th.borderStrong}`, borderRadius: 8, padding: "6px 10px" }}>
+                        <tool.icon size={13} color={tool.color} /> {tool.label}
+                      </span>
+                    ))}
+                    <span style={{ display: "inline-flex", alignItems: "center", fontSize: 12.5, fontWeight: 600, color: "#06B6D4", background: "#06B6D41A", borderRadius: 8, padding: "6px 10px" }}>
+                      {t.moreTools}
+                    </span>
+                  </div>
+                </div>
               </div>
               <div className="hero-diagram"><NetworkDiagram th={th} heroDraw={heroDraw} /></div>
             </div>
@@ -283,7 +338,7 @@ export default function TasklessLanding() {
 
           <section id="section-products" ref={railRef} style={{ padding: "30px 0 96px" }}>
             <div style={{ maxWidth: 1180, margin: "0 auto", padding: "0 24px", display: "flex", alignItems: "baseline", justifyContent: "space-between", marginBottom: 26, flexWrap: "wrap", gap: 10 }}>
-              <div><span style={{ fontSize: 12, letterSpacing: 2, textTransform: "uppercase", color: "#06B6D4" }}>{t.railEyebrow}</span><h2 className="display" style={{ fontSize: 26, fontWeight: 700, margin: "6px 0 0" }}>{t.railTitle}</h2></div>
+              <div><span style={{ fontSize: 12, letterSpacing: 2, textTransform: "uppercase", color: "#06B6D4" }}>{t.railEyebrow}</span><h2 className="display" style={{ fontSize: 26, fontWeight: 700, margin: "6px 0 6px" }}>{t.railTitle}</h2><p style={{ fontSize: 14, color: th.muted2, margin: 0, maxWidth: 420 }}>{t.railIntro}</p></div>
               <span style={{ fontSize: 13, color: th.muted3, display: "flex", alignItems: "center", gap: 6, whiteSpace: "nowrap" }}><MousePointerClick size={14} /> {t.swipeHint}</span>
             </div>
             <div className="rail" style={{ display: "flex", gap: 20, overflowX: "auto", scrollSnapType: "x mandatory", padding: "8px 24px 20px", maxWidth: 1180, margin: "0 auto" }}>
@@ -295,10 +350,31 @@ export default function TasklessLanding() {
             </div>
           </section>
 
+          <section id="section-how" style={{ padding: "10px 24px 90px", maxWidth: 1180, margin: "0 auto" }}>
+            <div style={{ textAlign: "center", marginBottom: 40 }}>
+              <span style={{ fontSize: 12, letterSpacing: 2, textTransform: "uppercase", color: "#06B6D4" }}>{t.howEyebrow}</span>
+              <h2 className="display" style={{ fontSize: 26, fontWeight: 700, margin: "6px 0 0" }}>{t.howTitle}</h2>
+            </div>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(220px,1fr))", gap: 26 }}>
+              {t.howSteps.map((s, i) => (
+                <div key={i} style={{ textAlign: "center", padding: "0 12px" }}>
+                  <div style={{ width: 52, height: 52, borderRadius: "50%", background: "linear-gradient(135deg,#2563EB,#06B6D4)", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 16px", fontFamily: "'Space Grotesk',sans-serif", fontWeight: 700, color: "#fff", fontSize: 18 }}>{i + 1}</div>
+                  <h3 className="display" style={{ fontSize: 16.5, marginBottom: 8 }}>{s.t}</h3>
+                  <p style={{ fontSize: 13.5, color: th.muted2, lineHeight: 1.6, margin: 0 }}>{s.d}</p>
+                </div>
+              ))}
+            </div>
+          </section>
+
           <section id="section-why" style={{ padding: "10px 24px 96px", maxWidth: 1180, margin: "0 auto" }}>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(240px,1fr))", gap: 22 }}>
               {t.trust.map((f, i) => { const Icon = [Clock, Shield, Globe2, MousePointerClick][i]; return (
-                <div key={i} style={{ padding: 24, borderRadius: 16, background: th.elevated, border: `1px solid ${th.border}` }}><Icon size={22} color="#06B6D4" /><h3 className="display" style={{ fontSize: 16.5, margin: "14px 0 8px" }}>{f.t}</h3><p style={{ fontSize: 13.5, color: th.muted2, lineHeight: 1.6, margin: 0 }}>{f.b}</p></div>
+                <div key={i} className="card-hover" style={{ padding: 26, borderRadius: 16, background: th.elevated, border: `1px solid ${th.border}`, transition: "box-shadow .25s ease, border-color .25s ease, transform .25s ease" }}>
+                  <Icon size={26} color="#06B6D4" />
+                  <div style={{ fontSize: 11, letterSpacing: 1, textTransform: "uppercase", color: th.muted3, margin: "16px 0 2px" }}>{f.b}</div>
+                  <h3 className="display" style={{ fontSize: 22, fontWeight: 700, margin: "0 0 8px" }}>{f.t}</h3>
+                  <p style={{ fontSize: 13.5, color: th.muted2, lineHeight: 1.6, margin: 0 }}>{f.d}</p>
+                </div>
               ); })}
             </div>
           </section>
@@ -312,7 +388,7 @@ export default function TasklessLanding() {
       )}
       </div>
 
-      {active && <DetailDrawer product={active} lang={lang} rtl={rtl} th={th} t={t} onClose={() => setActive(null)} onRequest={() => setRequestContext({ source: "Website — Product Drawer", product_id: active.id })} />}
+      {active && <DetailDrawer product={active} lang={lang} rtl={rtl} th={th} t={t} onClose={() => setActive(null)} onRequest={() => { setRequestContext({ source: "Website — Product Drawer", product_id: active.id }); setView("home"); }} />}
     </div>
   );
 }
@@ -408,8 +484,11 @@ function IconToggle({ children, onClick, th, label, wide }) {
 function ProductCard({ p, i, inView, lang, rtl, th, t, onOpen }) {
   const color = SEGMENT_COLORS[p.seg]; const d = p[lang]; const Icon = p.icon;
   return (
-    <div className="card" style={{ scrollSnapAlign: "start", minWidth: 264, maxWidth: 264, borderRadius: 18, padding: 22, background: th.elevated, border: `1px solid ${th.border}`, opacity: inView ? 1 : 0, transform: inView ? "translateY(0) scale(1)" : "translateY(28px) scale(0.96)", transition: `all .6s cubic-bezier(.22,1,.36,1) ${i * 0.12}s` }}>
-      <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 10 }}><span style={{ width: 7, height: 7, borderRadius: "50%", background: color }} /><span style={{ fontSize: 11, letterSpacing: 1, textTransform: "uppercase", color: th.muted3 }}>{t.segLabels[p.seg]}</span></div>
+    <div className="card card-hover" style={{ scrollSnapAlign: "start", minWidth: 264, maxWidth: 264, borderRadius: 18, padding: 22, background: th.elevated, border: `1px solid ${th.border}`, opacity: inView ? 1 : 0, transform: inView ? "translateY(0) scale(1)" : "translateY(28px) scale(0.96)", transition: `opacity .6s cubic-bezier(.22,1,.36,1) ${i * 0.12}s, transform .6s cubic-bezier(.22,1,.36,1) ${i * 0.12}s, box-shadow .25s ease, border-color .25s ease` }}>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 10 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 8 }}><span style={{ width: 7, height: 7, borderRadius: "50%", background: color }} /><span style={{ fontSize: 11, letterSpacing: 1, textTransform: "uppercase", color: th.muted3 }}>{t.segLabels[p.seg]}</span></div>
+        <span style={{ fontSize: 10.5, fontWeight: 600, color: "#06B6D4", background: "#06B6D41A", borderRadius: 6, padding: "2px 7px" }}>{deliveryLabel(p.id, t)}</span>
+      </div>
       <h3 className="display" style={{ fontSize: 17.5, fontWeight: 700, margin: "0 0 8px" }}>{d.name}</h3>
       <p style={{ fontSize: 13, color: th.muted2, lineHeight: 1.5, minHeight: 40, margin: "0 0 10px" }}>{d.hook}</p>
       <MiniFlow fromIcon={Icon} fromColor={color} toIcon={p.outIcon} fromLabel={d.inLabel} toLabel={d.outLabel} th={th} automateLabel={t.automateLabel} />
@@ -433,7 +512,7 @@ function DetailDrawer({ product, lang, rtl, th, t, onClose, onRequest }) {
         <Block label={t.drawer.before} text={d.before} th={th} />
         <Block label={t.drawer.after} text={d.after} color={color} th={th} />
         <Block label={t.drawer.need} text={d.need} th={th} />
-        <button style={{ ...btnPrimary, width: "100%", marginTop: 12, justifyContent: "center" }} onClick={() => { onRequest(); onClose(); setTimeout(() => scrollToId("section-contact"), 60); }}>{t.drawer.cta} <ArrowRight size={16} style={{ [rtl ? "marginRight" : "marginLeft"]: 6, transform: rtl ? "rotate(180deg)" : "none" }} /></button>
+        <button className="cta-hover" style={{ ...btnPrimary, width: "100%", marginTop: 12, justifyContent: "center" }} onClick={() => { onRequest(); onClose(); setTimeout(() => scrollToId("section-contact"), 150); }}>{t.drawer.cta} <ArrowRight size={16} style={{ [rtl ? "marginRight" : "marginLeft"]: 6, transform: rtl ? "rotate(180deg)" : "none" }} /></button>
       </div>
     </div>
   );
@@ -442,22 +521,57 @@ function Block({ label, text, color, th }) {
   return <div style={{ marginBottom: 20 }}><div style={{ fontSize: 12, letterSpacing: 0.5, color: color || th.muted2, fontWeight: 600, marginBottom: 6 }}>{label}</div><p style={{ fontSize: 14.5, lineHeight: 1.6, color: th.muted, margin: 0 }}>{text}</p></div>;
 }
 function CatalogView({ products, t, th, rtl, lang, onBack, onOpen }) {
+  const [query, setQuery] = useState("");
+  const [activeSeg, setActiveSeg] = useState("all");
+  const segments = ["all", "business", "creators", "students", "parents", "health"];
+  const filtered = products.filter((p) => {
+    const d = p[lang];
+    const matchesSeg = activeSeg === "all" || p.seg === activeSeg;
+    const q = query.trim().toLowerCase();
+    const matchesQuery = !q || d.name.toLowerCase().includes(q) || d.hook.toLowerCase().includes(q);
+    return matchesSeg && matchesQuery;
+  });
   return (
     <div style={{ maxWidth: 1180, margin: "0 auto", padding: "40px 24px 100px", textAlign: rtl ? "right" : "left" }}>
       <button onClick={onBack} style={{ background: "none", border: "none", color: "#06B6D4", fontSize: 14, cursor: "pointer", marginBottom: 24, gap: 6 }}>{rtl ? "→" : "←"} {t.back}</button>
       <h2 className="display" style={{ fontSize: 28, fontWeight: 700, marginBottom: 8 }}>{t.catalogTitle}</h2>
-      <p style={{ color: th.muted2, marginBottom: 34 }}>{t.catalogSub}</p>
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(250px,1fr))", gap: 18 }}>
-        {products.map((p) => { const d = p[lang]; const color = SEGMENT_COLORS[p.seg]; const Icon = p.icon; return (
-          <div key={p.id} style={{ borderRadius: 16, padding: 20, background: th.elevated, border: `1px solid ${th.border}` }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 10 }}><span style={{ width: 6, height: 6, borderRadius: "50%", background: color }} /><span style={{ fontSize: 10.5, letterSpacing: 1, textTransform: "uppercase", color: th.muted3 }}>{t.segLabels[p.seg]}</span></div>
-            <h3 className="display" style={{ fontSize: 16, fontWeight: 700, margin: "0 0 6px" }}>{d.name}</h3>
-            <p style={{ fontSize: 12.5, color: th.muted2, lineHeight: 1.5, minHeight: 36, margin: "0 0 10px" }}>{d.hook}</p>
-            <MiniFlow fromIcon={Icon} fromColor={color} toIcon={p.outIcon} fromLabel={d.inLabel} toLabel={d.outLabel} th={th} automateLabel={t.automateLabel} />
-            <button onClick={() => onOpen(p)} style={{ background: "none", border: "none", color, fontSize: 12.5, fontWeight: 600, cursor: "pointer", padding: 0, marginTop: 8 }}>{t.seeMore} →</button>
-          </div>
-        ); })}
+      <p style={{ color: th.muted2, marginBottom: 24 }}>{t.catalogSub}</p>
+
+      <div style={{ position: "relative", marginBottom: 18, maxWidth: 420 }}>
+        <input placeholder={t.searchPh} value={query} onChange={(e) => setQuery(e.target.value)}
+          style={{ width: "100%", border: `1px solid ${th.borderStrong}`, borderRadius: 10, padding: "11px 14px", fontSize: 14, background: th.elevated, color: th.text, fontFamily: "inherit" }} />
       </div>
+      <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 30 }}>
+        {segments.map((s) => (
+          <button key={s} className="filter-pill" onClick={() => setActiveSeg(s)} style={{
+            border: `1px solid ${activeSeg === s ? "#06B6D4" : th.borderStrong}`,
+            background: activeSeg === s ? "#06B6D41A" : th.elevated,
+            color: activeSeg === s ? "#06B6D4" : th.muted2,
+            borderRadius: 20, padding: "7px 16px", fontSize: 13, fontWeight: 600, cursor: "pointer",
+          }}>{s === "all" ? t.allCategories : t.segLabels[s]}</button>
+        ))}
+      </div>
+
+      {filtered.length === 0 ? (
+        <p style={{ color: th.muted3, fontSize: 14, padding: "40px 0", textAlign: "center" }}>
+          {rtl ? "لا توجد نتائج مطابقة." : "No workflows match that search."}
+        </p>
+      ) : (
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(250px,1fr))", gap: 18 }}>
+          {filtered.map((p) => { const d = p[lang]; const color = SEGMENT_COLORS[p.seg]; const Icon = p.icon; return (
+            <div key={p.id} className="card-hover" style={{ borderRadius: 16, padding: 20, background: th.elevated, border: `1px solid ${th.border}`, transition: "box-shadow .25s ease, border-color .25s ease, transform .25s ease" }}>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 10 }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 8 }}><span style={{ width: 6, height: 6, borderRadius: "50%", background: color }} /><span style={{ fontSize: 10.5, letterSpacing: 1, textTransform: "uppercase", color: th.muted3 }}>{t.segLabels[p.seg]}</span></div>
+                <span style={{ fontSize: 10, fontWeight: 600, color: "#06B6D4", background: "#06B6D41A", borderRadius: 6, padding: "2px 6px" }}>{deliveryLabel(p.id, t)}</span>
+              </div>
+              <h3 className="display" style={{ fontSize: 16, fontWeight: 700, margin: "0 0 6px" }}>{d.name}</h3>
+              <p style={{ fontSize: 12.5, color: th.muted2, lineHeight: 1.5, minHeight: 36, margin: "0 0 10px" }}>{d.hook}</p>
+              <MiniFlow fromIcon={Icon} fromColor={color} toIcon={p.outIcon} fromLabel={d.inLabel} toLabel={d.outLabel} th={th} automateLabel={t.automateLabel} />
+              <button onClick={() => onOpen(p)} style={{ background: "none", border: "none", color, fontSize: 12.5, fontWeight: 600, cursor: "pointer", padding: 0, marginTop: 8 }}>{t.seeMore} →</button>
+            </div>
+          ); })}
+        </div>
+      )}
     </div>
   );
 }
@@ -485,7 +599,11 @@ function ContactSection({ t, th, rtl, lang, requestContext }) {
   return (
     <section id="section-contact" style={{ padding: "10px 24px 100px", maxWidth: 620, margin: "0 auto", textAlign: "center" }}>
       <h2 className="display" style={{ fontSize: 28, fontWeight: 700, marginBottom: 10 }}>{t.inquiryTitle}</h2>
-      <p style={{ color: th.muted2, marginBottom: 30 }}>{t.inquirySub}</p>
+      <p style={{ color: th.muted2, marginBottom: 22 }}>{t.inquirySub}</p>
+      <div style={{ background: th.elevated, border: `1px solid ${th.border}`, borderRadius: 12, padding: "14px 18px", marginBottom: 30, textAlign: rtl ? "right" : "left" }}>
+        <div style={{ fontSize: 13, fontWeight: 700, marginBottom: 4 }}>{t.pricingTitle}</div>
+        <div style={{ fontSize: 12.5, color: th.muted2, lineHeight: 1.6 }}>{t.pricingBody}</div>
+      </div>
       {sent ? (
         <div style={{ borderRadius: 16, background: th.elevated, border: `1px solid ${th.border}`, padding: "32px 24px", animation: "popin .4s ease" }}>
           <div style={{ width: 44, height: 44, borderRadius: "50%", background: "#25D36622", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 14px" }}><Check size={22} color="#25D366" /></div>
@@ -500,7 +618,7 @@ function ContactSection({ t, th, rtl, lang, requestContext }) {
           <input placeholder={t.emailPh} type="email" value={form.email} onChange={set("email")} style={{ ...inputStyle, background: th.elevated, borderColor: th.borderStrong, color: th.text }} />
           <textarea placeholder={t.descPh} rows={3} value={form.message} onChange={set("message")} style={{ ...inputStyle, background: th.elevated, borderColor: th.borderStrong, color: th.text, resize: "vertical" }} />
           {error && <span style={{ fontSize: 13, color: th.danger }}>{t.formError}</span>}
-          <button onClick={submit} style={{ ...btnPrimary, justifySelf: rtl ? "end" : "start", marginTop: 4 }}>{t.send} <Send size={15} style={{ [rtl ? "marginRight" : "marginLeft"]: 6 }} /></button>
+          <button className="cta-hover" onClick={submit} style={{ ...btnPrimary, justifySelf: rtl ? "end" : "start", marginTop: 4 }}>{t.send} <Send size={15} style={{ [rtl ? "marginRight" : "marginLeft"]: 6 }} /></button>
         </div>
       )}
     </section>
@@ -509,7 +627,7 @@ function ContactSection({ t, th, rtl, lang, requestContext }) {
 function Footer({ t, th, rtl, openFaq, setOpenFaq }) {
   return (
     <footer id="section-faq" style={{ borderTop: `1px solid ${th.border}`, padding: "52px 24px 32px" }}>
-      <div style={{ maxWidth: 1180, margin: "0 auto", display: "grid", gridTemplateColumns: "1.2fr 1fr", gap: 60, textAlign: rtl ? "right" : "left" }}>
+      <div className="footer-grid" style={{ maxWidth: 1180, margin: "0 auto", textAlign: rtl ? "right" : "left" }}>
         <div><h3 className="display" style={{ fontSize: 18, marginBottom: 10 }}>Taskless</h3><p style={{ fontSize: 13.5, color: th.muted2, lineHeight: 1.6, maxWidth: 320 }}>{t.footAbout}</p><div style={{ display: "flex", gap: 14, marginTop: 20 }}><Instagram size={18} color={th.muted3} /><Linkedin size={18} color={th.muted3} /></div></div>
         <div>
           <h4 style={{ fontSize: 13, letterSpacing: 1, textTransform: "uppercase", color: th.muted3, marginBottom: 16 }}>{t.faqTitle}</h4>
@@ -520,8 +638,17 @@ function Footer({ t, th, rtl, openFaq, setOpenFaq }) {
             </div>
           ))}
         </div>
+        <div>
+          <h4 style={{ fontSize: 13, letterSpacing: 1, textTransform: "uppercase", color: th.muted3, marginBottom: 16 }}>{t.legalTitle}</h4>
+          <div style={{ fontSize: 13.5, color: th.muted2, lineHeight: 2.2 }}>
+            <div>{t.privacy}</div>
+            <div>{t.terms}</div>
+          </div>
+        </div>
       </div>
-      <p style={{ textAlign: "center", fontSize: 12, color: th.muted3, marginTop: 44 }}>{t.tagline}</p>
+      <p style={{ textAlign: "center", fontSize: 12.5, color: th.muted2, marginTop: 44, fontStyle: "italic" }}>{t.footBrandLine}</p>
+      <p style={{ textAlign: "center", fontSize: 12, color: th.muted3, marginTop: 8 }}>{t.tagline}</p>
+      <p style={{ textAlign: "center", fontSize: 11.5, color: th.muted3, marginTop: 14, paddingTop: 14, borderTop: `1px solid ${th.border}`, maxWidth: 300, marginLeft: "auto", marginRight: "auto" }}>{t.copyright}</p>
     </footer>
   );
 }
