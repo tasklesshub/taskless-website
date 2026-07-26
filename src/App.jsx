@@ -7,6 +7,7 @@ import {
   ClipboardCheck, CalendarCheck2, Wallet, Pill, ClipboardList, Camera,
   Activity, Droplet, LineChart, Phone, Grid3x3, Bot, FileText, LayoutGrid,
   Palette, Hash, FileSpreadsheet, Presentation, Inbox, Utensils,
+  MapPin, UserPlus, Mic, Building2, User,
 } from "lucide-react";
 
 /* ---------------------------------------------------------
@@ -16,7 +17,7 @@ const THEMES = {
   dark: { bg: "#0D1117", elevated: "#131822", text: "#F5F7FA", muted: "#A6B0C0", muted2: "#8892A0", muted3: "#6B7686", border: "rgba(255,255,255,0.07)", borderStrong: "#2A3242", orb1: "#2563EB55", orb2: "#06B6D455", overlay: "rgba(5,7,11,0.72)", dot: "rgba(255,255,255,0.05)", danger: "#F87171" },
   light: { bg: "#F3F5F8", elevated: "#FFFFFF", text: "#0D1117", muted: "#3F4756", muted2: "#5B6472", muted3: "#7C8494", border: "rgba(13,17,23,0.08)", borderStrong: "#DCE1E8", orb1: "#2563EB2E", orb2: "#06B6D42E", overlay: "rgba(240,242,246,0.78)", dot: "rgba(13,17,23,0.05)", danger: "#DC2626" },
 };
-const SEGMENT_COLORS = { business: "#C9962A", creators: "#7C3AED", students: "#2563EB", parents: "#EA580C", health: "#0D9488" };
+const CATEGORY_COLORS = { sales: "#2563EB", ops: "#F59E0B", cx: "#EC4899", people: "#7C3AED", personal: "#10B981" };
 
 const INNER_TOOLS = [
   { label: "WhatsApp", icon: Phone, color: "#25D366" },
@@ -43,13 +44,15 @@ const OUTER_TOOLS = [
 --------------------------------------------------------- */
 const UI = {
   en: {
-    cta: "Get in touch", segLabels: { business: "Business", creators: "Creators", students: "Students", parents: "Parents", health: "Health" },
+    cta: "Get in touch",
+    categoryLabels: { sales: "Sales & Growth", ops: "Operations & Finance", cx: "Customer Experience", people: "People & Projects", personal: "Personal Productivity & Wellbeing" },
+    audienceLabels: { business: "Business", individual: "Individual" },
     menu: { home: "Home", products: "Products", how: "How it works", why: "Why Taskless", contact: "Get in touch", faq: "FAQ" },
     heroBadge: "Automation, connected", heroLine1: "Your to-do list", heroLine2: "just disappeared.",
     heroSub: "We connect the tools you already use into AI-powered workflows that eliminate repetitive work, cut mistakes, and save hours every week — delivered in 48 hours, no coding required.",
     heroCta: "Browse Workflows", scroll: "Scroll",
     integrationsLabel: "Works with the tools you already use", moreTools: "+ 7 more",
-    railEyebrow: "Popular Workflows", railTitle: "Ready-to-use automations", railIntro: "Each one solves a repetitive problem a real business runs into every week.", swipeHint: "swipe to browse", viewAll: "View all 25", seeMore: "View Workflow",
+    railEyebrow: "Popular Workflows", railTitle: "Ready-to-use automations", railIntro: "Each one solves a repetitive problem a real business runs into every week.", swipeHint: "swipe to browse", viewAll: "View all 20", seeMore: "View Workflow",
     deliverySimple: "24–48h", deliveryStandard: "48h min", deliveryComplex: "48–72h",
     automateLabel: "Automate", viaWhatsapp: "Delivered via WhatsApp",
     trust: [
@@ -79,17 +82,23 @@ const UI = {
     ],
     tagline: "Taskless — Your to-do list just disappeared.",
     drawer: { before: "Before Taskless", after: "After Taskless", need: "What we need from you", cta: "Get this running for me" },
-    catalogTitle: "All workflows", catalogSub: "25 workflows — search or filter by category to find yours.", back: "Back",
+    bestForLabel: "Best for", deliverablesTitle: "How you receive this",
+    transferTitle: "Transfer (one-time)", transferBody: "Workflow file, documentation, and testing — you own and host it after handover. No ongoing support included.",
+    hostedTitle: "Hosted & Managed (recurring)", hostedBody: "Workflow, documentation, testing, a training session, and ongoing support included in the monthly fee.",
+    customizableNote: "Every workflow can be customized to fit your exact process.",
+    catalogTitle: "All workflows", catalogSub: "20 workflows — search or filter by category to find yours.", back: "Back",
     searchPh: "Search workflows...", allCategories: "All",
   },
   ar: {
-    cta: "تواصل معنا", segLabels: { business: "أعمال", creators: "مبدعون", students: "طلاب", parents: "أهالي", health: "صحة" },
+    cta: "تواصل معنا",
+    categoryLabels: { sales: "المبيعات والنمو", ops: "العمليات والمالية", cx: "تجربة العملاء", people: "الأفراد والمشاريع", personal: "الإنتاجية الشخصية والعافية" },
+    audienceLabels: { business: "أعمال", individual: "فردي" },
     menu: { home: "الرئيسية", products: "الخدمات", how: "كيف نعمل", why: "لماذا Taskless", contact: "تواصل معنا", faq: "الأسئلة الشائعة" },
     heroBadge: "أتمتة متصلة", heroLine1: "قائمة مهامك", heroLine2: "اختفت للتو.",
     heroSub: "نربط الأدوات التي تستخدمها فعلاً في أتمتة مدعومة بالذكاء الاصطناعي تُلغي العمل المتكرر، تقلل الأخطاء، وتوفر ساعات كل أسبوع — تُسلَّم خلال 48 ساعة، بلا برمجة.",
     heroCta: "تصفح الأتمتة", scroll: "مرر للأسفل",
     integrationsLabel: "يعمل مع الأدوات التي تستخدمها فعلاً", moreTools: "+ 7 أدوات أخرى",
-    railEyebrow: "الأتمتة الأكثر طلباً", railTitle: "أتمتة جاهزة للاستخدام", railIntro: "كل واحدة تحل مشكلة متكررة يواجهها أي عمل كل أسبوع.", swipeHint: "اسحب للتصفح", viewAll: "عرض الكل (25)", seeMore: "عرض الأتمتة",
+    railEyebrow: "الأتمتة الأكثر طلباً", railTitle: "أتمتة جاهزة للاستخدام", railIntro: "كل واحدة تحل مشكلة متكررة يواجهها أي عمل كل أسبوع.", swipeHint: "اسحب للتصفح", viewAll: "عرض الكل (20)", seeMore: "عرض الأتمتة",
     deliverySimple: "24–48 ساعة", deliveryStandard: "48 ساعة كحد أدنى", deliveryComplex: "48–72 ساعة",
     automateLabel: "أتمتة", viaWhatsapp: "يُسلَّم عبر واتساب",
     trust: [
@@ -119,48 +128,43 @@ const UI = {
     ],
     tagline: "Taskless — قائمة مهامك اختفت للتو.",
     drawer: { before: "قبل Taskless", after: "بعد Taskless", need: "ماذا نحتاج منك", cta: "فعّل هذا لي" },
-    catalogTitle: "كل الأتمتة", catalogSub: "25 أتمتة — ابحث أو صفّ حسب الفئة لتجد ما يناسبك.", back: "رجوع",
+    bestForLabel: "الأنسب لـ", deliverablesTitle: "كيف تستلم هذه الأتمتة",
+    transferTitle: "نقل الملكية (دفعة واحدة)", transferBody: "ملف الأتمتة والتوثيق والاختبار — تملكها وتستضيفها بعد التسليم. بلا دعم مستمر.",
+    hostedTitle: "استضافة وإدارة (اشتراك شهري)", hostedBody: "الأتمتة، التوثيق، الاختبار، جلسة تدريب، ودعم مستمر ضمن الاشتراك الشهري.",
+    customizableNote: "يمكن تخصيص كل أتمتة لتناسب عمليتك بالضبط.",
+    catalogTitle: "كل الأتمتة", catalogSub: "20 أتمتة — ابحث أو صفّ حسب الفئة لتجد ما يناسبك.", back: "رجوع",
     searchPh: "ابحث في الأتمتة...", allCategories: "الكل",
   },
 };
 
 /* ---------------------------------------------------------
-   PRODUCTS — each with distinct trigger + output for its flow visual
+   PRODUCTS — 20 workflows across 5 functional categories.
+   audience is derived from category (personal => individual), not
+   hand-set per item, since the mapping is currently exact.
 --------------------------------------------------------- */
 const FALLBACK_PRODUCTS = [
-  { id: "B1", seg: "business", icon: MessageCircle, outIcon: MessageCircle, en: { name: "Lead Alert", hook: "Someone contacts you — WhatsApp instantly", before: "Leads sit in an inbox for hours before anyone replies.", after: "Every lead reaches you on WhatsApp within seconds, while their interest is still warm.", need: "Your form or lead source, plus a WhatsApp number.", inLabel: "New lead", outLabel: "WhatsApp alert" }, ar: { name: "تنبيه العميل المحتمل", hook: "شخص يتواصل معك — واتساب فوراً", before: "العملاء المحتملون ينتظرون ساعات قبل أن يرد أحد.", after: "كل عميل محتمل يصلك على واتساب خلال ثوانٍ.", need: "نموذجك أو مصدر العملاء، ورقم واتساب.", inLabel: "عميل جديد", outLabel: "تنبيه واتساب" } },
-  { id: "B2", seg: "business", icon: Receipt, outIcon: Grid3x3, en: { name: "Invoice Scanner", hook: "Photo any invoice — data logged automatically", before: "Someone retypes every invoice into a spreadsheet by hand.", after: "A photo becomes a logged, categorized entry in seconds.", need: "Where invoices arrive and your bookkeeping sheet.", inLabel: "Invoice", outLabel: "Logged entry" }, ar: { name: "ماسح الفواتير", hook: "صوّر أي فاتورة — تُسجَّل تلقائياً", before: "شخص يعيد كتابة كل فاتورة يدوياً في جدول بيانات.", after: "الصورة تتحول إلى قيد مصنّف خلال ثوانٍ.", need: "مكان وصول الفواتير وجدول الحسابات.", inLabel: "فاتورة", outLabel: "قيد مسجّل" } },
-  { id: "B3", seg: "business", icon: BarChart3, outIcon: BarChart3, en: { name: "Daily Business Report", hook: "8am WhatsApp — yesterday's numbers", before: "You call around each morning just to find out how yesterday went.", after: "One WhatsApp at 8am tells you sales, top product, and team status.", need: "Access to your sales data and morning send time.", inLabel: "Sales data", outLabel: "Daily report" }, ar: { name: "التقرير اليومي للأعمال", hook: "واتساب الساعة 8 صباحاً — أرقام الأمس", before: "تتصل كل صباح لمعرفة كيف سار العمل بالأمس.", after: "رسالة واحدة الساعة 8 صباحاً: المبيعات وأفضل منتج.", need: "الوصول لبيانات المبيعات ووقت الإرسال.", inLabel: "بيانات المبيعات", outLabel: "تقرير يومي" } },
-  { id: "B4", seg: "business", icon: CalendarClock, outIcon: Bell, en: { name: "Expiry Reminder", hook: "Contracts & visas — alerts before they lapse", before: "Rental contracts and employee visas expire without warning.", after: "WhatsApp alerts land 30, 14, and 7 days before anything expires.", need: "A list of your contracts/visas and expiry dates.", inLabel: "Contract/visa", outLabel: "Expiry alert" }, ar: { name: "تذكير انتهاء الصلاحية", hook: "العقود والإقامات — تنبيهات قبل الانتهاء", before: "عقود الإيجار وإقامات الموظفين تنتهي دون سابق إنذار.", after: "تنبيهات واتساب قبل 30 و14 و7 أيام من أي انتهاء.", need: "قائمة عقودك/إقاماتك وتواريخها.", inLabel: "عقد/إقامة", outLabel: "تنبيه انتهاء" } },
-  { id: "B5", seg: "business", icon: Star, outIcon: Star, en: { name: "Review Request", hook: "Job done — review request sent automatically", before: "Happy customers leave without ever being asked for a review.", after: "A review request goes out the moment a job is marked complete.", need: "Your job-completion trigger and review link.", inLabel: "Job done", outLabel: "Review request" }, ar: { name: "طلب التقييم", hook: "انتهاء العمل — طلب تقييم تلقائي", before: "العملاء الراضون يغادرون دون أن يُطلب منهم تقييم.", after: "طلب التقييم يُرسل فور تأشير العمل كمكتمل.", need: "مُشغّل اكتمال العمل ورابط التقييم.", inLabel: "اكتمال العمل", outLabel: "طلب تقييم" } },
-  { id: "C1", seg: "creators", icon: Sparkles, outIcon: Share2, en: { name: "Auto Caption", hook: "Type a topic — post goes live with caption + hashtags", before: "Writing one caption eats 30 minutes you don't have.", after: "Give it a topic; it writes, tags, and schedules the post.", need: "Your content calendar and social accounts.", inLabel: "Topic", outLabel: "Live post" }, ar: { name: "التسمية التلقائية", hook: "اكتب موضوعاً — يُنشر بالتسمية والهاشتاغ", before: "كتابة تسمية واحدة تستهلك 30 دقيقة لا تملكها.", after: "أعطها موضوعاً؛ تكتب وتُصنّف وتُجدول المنشور.", need: "تقويم المحتوى وحسابات التواصل.", inLabel: "موضوع", outLabel: "منشور مباشر" } },
-  { id: "C2", seg: "creators", icon: Share2, outIcon: Share2, en: { name: "Multi-Platform Publish", hook: "One upload — live everywhere at once", before: "Posting the same video to five platforms, one at a time.", after: "Upload once, it's live on every platform in minutes.", need: "Logins for the platforms you post to.", inLabel: "Video", outLabel: "Published" }, ar: { name: "النشر متعدد المنصات", hook: "رفعة واحدة — تظهر في كل مكان فوراً", before: "نشر نفس الفيديو على خمس منصات، واحدة تلو الأخرى.", after: "ارفع مرة واحدة، يظهر على كل منصة خلال دقائق.", need: "بيانات الدخول للمنصات.", inLabel: "فيديو", outLabel: "منشور" } },
-  { id: "C3", seg: "creators", icon: Newspaper, outIcon: Newspaper, en: { name: "Niche News Briefing", hook: "Morning WhatsApp — 5 trending stories in your niche", before: "45 minutes lost daily hunting for content ideas.", after: "One WhatsApp with five summarized stories, ready to react to.", need: "Your niche/topics and send time.", inLabel: "Your niche", outLabel: "News digest" }, ar: { name: "ملخّص أخبار المجال", hook: "واتساب الصباح — 5 قصص رائجة في مجالك", before: "45 دقيقة تُهدر يومياً بحثاً عن أفكار محتوى.", after: "رسالة واحدة بخمس قصص ملخّصة.", need: "مجالك ووقت الإرسال.", inLabel: "مجالك", outLabel: "ملخص أخبار" } },
-  { id: "C4", seg: "creators", icon: CalendarDays, outIcon: CalendarDays, en: { name: "Scheduled Auto-Post", hook: "Plan a week in a sheet — it posts itself", before: "Logging in daily to publish, forgetting some days entirely.", after: "Fill a sheet once; the week posts on schedule without you.", need: "A content sheet and platform credentials.", inLabel: "Content sheet", outLabel: "Scheduled post" }, ar: { name: "النشر المجدول", hook: "خطط أسبوعاً في جدول — ينشر نفسه", before: "الدخول يومياً للنشر، ونسيان بعض الأيام تماماً.", after: "املأ الجدول مرة، والأسبوع ينشر حسب الموعد.", need: "جدول محتوى وبيانات دخول المنصات.", inLabel: "جدول محتوى", outLabel: "منشور مجدول" } },
-  { id: "C5", seg: "creators", icon: Handshake, outIcon: Handshake, en: { name: "Brand Deal Follow-Up", hook: "No reply in 5 days — follow-up sends itself", before: "Pitches sent and forgotten, deals quietly lost.", after: "Silence for 5 days triggers an automatic, polite follow-up.", need: "Your outreach list and email/DM access.", inLabel: "Pitch sent", outLabel: "Follow-up" }, ar: { name: "متابعة صفقات العلامات", hook: "لا رد خلال 5 أيام — المتابعة تُرسل نفسها", before: "عروض تُرسل وتُنسى، وصفقات تُفقد بصمت.", after: "الصمت لخمسة أيام يُشغّل متابعة تلقائية.", need: "قائمة التواصل ووصول البريد.", inLabel: "عرض مرسل", outLabel: "متابعة" } },
-  { id: "S1", seg: "students", icon: Bell, outIcon: Bell, en: { name: "Deadline Reminder", hook: "WhatsApp before every deadline", before: "Submission dates slip by unnoticed.", after: "Alerts 3 days and 1 day before anything is due.", need: "Your assignment list or portal login.", inLabel: "Assignment", outLabel: "Reminder" }, ar: { name: "تذكير المواعيد النهائية", hook: "واتساب قبل كل موعد تسليم", before: "مواعيد التسليم تمر دون ملاحظة.", after: "تنبيهات قبل 3 أيام ويوم واحد من أي موعد.", need: "قائمة واجباتك أو بوابة الجامعة.", inLabel: "واجب", outLabel: "تذكير" } },
-  { id: "S2", seg: "students", icon: FileSearch, outIcon: FileSearch, en: { name: "Research Summarizer", hook: "Send a link — get the key points in 60 seconds", before: "Reading five papers takes a full day.", after: "Paste a link, receive the key points back almost instantly.", need: "Nothing but the links you want summarized.", inLabel: "Article link", outLabel: "Key points" }, ar: { name: "ملخّص الأبحاث", hook: "أرسل رابطاً — النقاط الأساسية خلال 60 ثانية", before: "قراءة خمسة أبحاث تستغرق يوماً كاملاً.", after: "الصق رابطاً، واستلم النقاط الأساسية فوراً تقريباً.", need: "لا شيء سوى الروابط.", inLabel: "رابط مقال", outLabel: "نقاط أساسية" } },
-  { id: "S3", seg: "students", icon: Sun, outIcon: Sun, en: { name: "Daily Study Plan", hook: "7am WhatsApp — today's plan, built for you", before: "Mornings start with no idea what to study first.", after: "A study plan lands before you're even out of bed.", need: "Your deadlines and subjects.", inLabel: "New day", outLabel: "Study plan" }, ar: { name: "خطة الدراسة اليومية", hook: "واتساب 7 صباحاً — خطة اليوم جاهزة", before: "الصباح يبدأ دون فكرة عمّا يجب دراسته أولاً.", after: "خطة الدراسة تصلك قبل أن تنهض من الفراش.", need: "مواعيدك النهائية وموادك.", inLabel: "يوم جديد", outLabel: "خطة دراسة" } },
-  { id: "S4", seg: "students", icon: Timer, outIcon: Timer, en: { name: "Exam Countdown", hook: "Daily countdown + one study tip", before: "No structure to exam prep — just rising anxiety.", after: "A daily nudge: days remaining, plus one useful tip.", need: "Your exam dates.", inLabel: "Exam date", outLabel: "Countdown" }, ar: { name: "عداد الامتحانات", hook: "عد تنازلي يومي + نصيحة دراسة", before: "لا تنظيم للمذاكرة — فقط قلق متصاعد.", after: "تذكير يومي: الأيام المتبقية ونصيحة مفيدة.", need: "تواريخ امتحاناتك.", inLabel: "موعد امتحان", outLabel: "عد تنازلي" } },
-  { id: "S5", seg: "students", icon: Mail, outIcon: Mail, en: { name: "Inbox Digest", hook: "Only the emails that need action from you", before: "Important announcements buried in a flooded inbox.", after: "One daily WhatsApp with only what actually needs a reply.", need: "Read access to your university inbox.", inLabel: "New email", outLabel: "Action digest" }, ar: { name: "ملخّص البريد الوارد", hook: "فقط الرسائل التي تحتاج إجراءً منك", before: "الإعلانات المهمة تضيع في بريد مزدحم.", after: "رسالة واتساب يومية بما يحتاج فعلاً إلى رد.", need: "صلاحية قراءة بريدك الجامعي.", inLabel: "بريد جديد", outLabel: "ملخص إجراءات" } },
-  { id: "P1", seg: "parents", icon: ClipboardCheck, outIcon: ClipboardCheck, en: { name: "Homework Tracker", hook: "Child logs it — you get the 6pm summary", before: "Asking 'did you do your homework?' with no way to check.", after: "A 2-minute form from your child becomes your evening summary.", need: "A device for your child and your WhatsApp number.", inLabel: "Homework form", outLabel: "Evening summary" }, ar: { name: "متابع الواجبات", hook: "يسجّل الطفل — تستلم ملخص 6 مساءً", before: "تسأل 'هل أنجزت واجبك؟' دون طريقة للتأكد.", after: "نموذج دقيقتين من طفلك يتحول إلى ملخصك المسائي.", need: "جهاز لطفلك ورقم واتساب.", inLabel: "نموذج واجب", outLabel: "ملخص مسائي" } },
-  { id: "P2", seg: "parents", icon: CalendarCheck2, outIcon: Bell, en: { name: "School Event Reminder", hook: "Alerts before every meeting and exam date", before: "Parent-teacher meetings and exam dates get missed.", after: "Reminders reach both parent and child, 3 days and 1 day out.", need: "Your school's calendar or event list.", inLabel: "School event", outLabel: "Reminder" }, ar: { name: "تذكير الفعاليات المدرسية", hook: "تنبيهات قبل كل اجتماع وموعد امتحان", before: "اجتماعات أولياء الأمور ومواعيد الامتحانات تُفوَّت.", after: "التذكيرات تصل للوالد والطفل قبل 3 أيام ويوم واحد.", need: "تقويم أو قائمة فعاليات مدرستك.", inLabel: "فعالية مدرسية", outLabel: "تذكير" } },
-  { id: "P3", seg: "parents", icon: Wallet, outIcon: Wallet, en: { name: "Family Expense Log", hook: "Photo a receipt — it's logged for everyone", before: "No shared tracker; month-end always brings a surprise.", after: "Any family member snaps a receipt, it's on the shared sheet.", need: "A shared sheet and everyone's WhatsApp numbers.", inLabel: "Receipt photo", outLabel: "Expense logged" }, ar: { name: "سجل مصاريف العائلة", hook: "صوّر إيصالاً — يُسجَّل للجميع", before: "لا متتبع مشترك؛ نهاية الشهر تحمل مفاجأة دائماً.", after: "أي فرد من العائلة يصوّر إيصالاً فيُسجَّل فوراً.", need: "جدول مشترك وأرقام واتساب الجميع.", inLabel: "صورة إيصال", outLabel: "مصروف مسجّل" } },
-  { id: "P4", seg: "parents", icon: Pill, outIcon: Check, en: { name: "Medication Reminder", hook: "Reminder sent, yes/no logged, caregiver alerted if missed", before: "A missed dose goes unnoticed until it's a problem.", after: "A reply confirms each dose; a miss alerts the caregiver right away.", need: "The medication schedule and caregiver's number.", inLabel: "Dose time", outLabel: "Confirmation" }, ar: { name: "تذكير الدواء", hook: "تذكير، رد بنعم/لا، تنبيه عند التفويت", before: "الجرعة الفائتة تمر دون ملاحظة حتى تصبح مشكلة.", after: "الرد يؤكد كل جرعة؛ والتفويت ينبّه مقدم الرعاية فوراً.", need: "جدول الدواء ورقم مقدم الرعاية.", inLabel: "وقت الجرعة", outLabel: "تأكيد" } },
-  { id: "P5", seg: "parents", icon: ClipboardList, outIcon: ClipboardList, en: { name: "Weekly Academic Summary", hook: "Every Sunday — the full week in one WhatsApp", before: "Grades, attendance, and activities scattered across apps.", after: "One message, every Sunday, with the whole week in view.", need: "Access to your school's parent portal.", inLabel: "Week end", outLabel: "Weekly summary" }, ar: { name: "الملخص الأكاديمي الأسبوعي", hook: "كل أحد — الأسبوع كاملاً في رسالة واحدة", before: "الدرجات والحضور والأنشطة مبعثرة بين التطبيقات.", after: "رسالة واحدة كل أحد تجمع الأسبوع بالكامل.", need: "الوصول لبوابة أولياء الأمور.", inLabel: "نهاية الأسبوع", outLabel: "ملخص أسبوعي" } },
-  { id: "H1", seg: "health", icon: Camera, outIcon: Utensils, en: { name: "Meal Photo Analyzer", hook: "Photo your plate — full nutrition breakdown in 15s", before: "No real idea what's actually in the meal you just ate.", after: "A photo returns calories and macros before you finish the bite.", need: "Just your WhatsApp — no app to install.", inLabel: "Meal photo", outLabel: "Nutrition breakdown" }, ar: { name: "محلل صور الوجبات", hook: "صوّر طبقك — تحليل غذائي خلال 15 ثانية", before: "لا فكرة حقيقية عمّا يحتويه الطبق الذي تناولته للتو.", after: "الصورة تُعيد السعرات والعناصر الغذائية.", need: "فقط رقم واتساب.", inLabel: "صورة وجبة", outLabel: "تحليل غذائي" } },
-  { id: "H2", seg: "health", icon: Moon, outIcon: Moon, en: { name: "Daily Calorie Summary", hook: "9pm WhatsApp — intake vs. your goal", before: "No visibility on the day's total until it's too late to adjust.", after: "One evening message: consumed, remaining, simple verdict.", need: "Your daily calorie goal.", inLabel: "Day's meals", outLabel: "Calorie summary" }, ar: { name: "ملخّص السعرات اليومي", hook: "واتساب 9 مساءً — الاستهلاك مقابل هدفك", before: "لا رؤية للمجموع اليومي حتى يفوت أوان التعديل.", after: "رسالة مسائية واحدة: المستهلك والمتبقي.", need: "هدفك اليومي من السعرات.", inLabel: "وجبات اليوم", outLabel: "ملخص سعرات" } },
-  { id: "H3", seg: "health", icon: Activity, outIcon: Activity, en: { name: "Medication Adherence Log", hook: "Reply yes/no — monthly report for your doctor", before: "Missed doses with no record to show at a check-up.", after: "Every reply is logged into a report ready for your next visit.", need: "Your medication schedule.", inLabel: "Dose time", outLabel: "Adherence report" }, ar: { name: "سجل الالتزام الدوائي", hook: "رد بنعم/لا — تقرير شهري لطبيبك", before: "جرعات فائتة دون سجل يُعرض في الزيارة القادمة.", after: "كل رد يُسجَّل ضمن تقرير جاهز لزيارتك القادمة.", need: "جدول أدويتك.", inLabel: "وقت الجرعة", outLabel: "تقرير التزام" } },
-  { id: "H4", seg: "health", icon: Droplet, outIcon: Droplet, en: { name: "Hydration Tracker", hook: "Text '1 glass' — get your daily hydration status", before: "No awareness of how little water you're actually drinking.", after: "A text logs it; a daily report shows where you stand.", need: "Nothing but your WhatsApp number.", inLabel: "Water log", outLabel: "Hydration status" }, ar: { name: "متتبع شرب الماء", hook: "اكتب 'كوب واحد' — احصل على حالتك اليومية", before: "لا وعي بمدى قلة الماء الذي تشربه فعلاً.", after: "رسالة تُسجّل الكوب؛ وتقرير يومي يوضح موقفك.", need: "لا شيء سوى رقم واتساب.", inLabel: "تسجيل ماء", outLabel: "حالة الترطيب" } },
-  { id: "H5", seg: "health", icon: LineChart, outIcon: LineChart, en: { name: "Weekly Health Summary", hook: "Sunday WhatsApp — patterns, not just numbers", before: "No big-picture view of your habits over time.", after: "One Sunday message: best/worst days and one real insight.", need: "A few weeks of logged data to build patterns from.", inLabel: "Week's data", outLabel: "Weekly insight" }, ar: { name: "الملخص الصحي الأسبوعي", hook: "واتساب الأحد — أنماط لا أرقام فقط", before: "لا رؤية شاملة لعاداتك عبر الوقت.", after: "رسالة أحد واحدة: أفضل وأسوأ الأيام ورؤية حقيقية.", need: "بضعة أسابيع من البيانات المسجّلة.", inLabel: "بيانات الأسبوع", outLabel: "رؤية أسبوعية" } },
+  { id: "SG1", category: "sales", icon: Globe2, outIcon: MessageCircle, en: { name: "Lead Capture", hook: "Someone fills out your form. You're on WhatsApp within seconds — before they've even closed the tab.", before: "A lead fills your contact form at 11pm. You see it two days later, buried in an inbox you check once a week. By the time you reply, they've already booked with someone else.", after: "The same lead fills the form. Your phone buzzes in seconds — name, number, and what they need, sitting in WhatsApp. You reply while they're still thinking about you.", need: "Access to your existing form (or we build one for you) · The WhatsApp number that should receive alerts · Where you want the lead saved.", inLabel: "Form submitted", outLabel: "WhatsApp + CRM", bestFor: ["Real Estate", "Clinics", "Agencies", "Retail"] }, ar: { name: "التقاط العملاء المحتملين", hook: "شخص يملأ نموذجك. تصلك رسالة واتساب خلال ثوانٍ — قبل أن يغلق حتى التبويب.", before: "عميل محتمل يملأ نموذج التواصل الساعة 11 مساءً. تراه بعد يومين، مدفوناً في بريد تفتحه مرة أسبوعياً. وبحلول وقت ردك، يكون قد حجز مع منافس.", after: "نفس العميل يملأ النموذج. هاتفك يهتز خلال ثوانٍ — الاسم، الرقم، وما يحتاجه، على واتساب مباشرة. ترد وهو لا يزال يفكر بك.", need: "الوصول لنموذجك الحالي (أو نبنيه لك) · رقم الواتساب المستلم للتنبيهات · مكان حفظ بيانات العميل.", inLabel: "تم إرسال النموذج", outLabel: "واتساب + CRM", bestFor: ["عقارات", "عيادات", "وكالات", "تجزئة"] } },
+  { id: "SG2", category: "sales", icon: MapPin, outIcon: ClipboardList, en: { name: "Lead Generation via Google Maps", hook: "Tell us your ideal customer's neighborhood and business type. We hand you a ready list, contact details included.", before: "You want to reach every clinic in a certain area, but building that list means hours of manual searching, copying names, and guessing which numbers are current.", after: "You tell us the area and business type once. A clean, ready-to-use list lands in your Sheet — no browser tabs, no copy-paste.", need: "The type of business you're targeting · The city or district · How often you'd like the list refreshed.", inLabel: "Area + business type", outLabel: "Ready contact list", bestFor: ["Sales Teams", "Agencies", "B2B Services"] }, ar: { name: "توليد العملاء المحتملين عبر خرائط جوجل", hook: "أخبرنا بمنطقة عميلك المثالي ونوع نشاطه. نسلّمك قائمة جاهزة، مع بيانات التواصل.", before: "تريد الوصول لكل عيادة في منطقة معينة، لكن بناء هذه القائمة يعني ساعات من البحث اليدوي ونسخ الأسماء وتخمين الأرقام الصحيحة.", after: "تخبرنا بالمنطقة والنوع مرة واحدة. قائمة جاهزة ونظيفة تصل جدولك — بلا تبويبات متصفح، بلا نسخ ولصق.", need: "نوع النشاط المستهدف · المدينة أو الحي · عدد مرات تحديث القائمة.", inLabel: "المنطقة والنوع", outLabel: "قائمة تواصل جاهزة", bestFor: ["فرق المبيعات", "وكالات", "خدمات B2B"] } },
+  { id: "SG3", category: "sales", icon: UserPlus, outIcon: ClipboardCheck, en: { name: "Customer Onboarding Automation", hook: "A new client signs. They get a personalized checklist automatically — no chasing, no forgotten steps.", before: "You close a deal, and then onboarding becomes a scattered thread of 'did you send that?' messages across WhatsApp, email, and memory.", after: "The moment a client signs, they receive a clear checklist built just for them — and you get a nudge the moment something's missing on their end.", need: "Your typical onboarding steps · Where new client info currently lives · The WhatsApp number(s) that should receive nudges.", inLabel: "Client signs", outLabel: "Onboarding checklist", bestFor: ["Agencies", "Consultancies", "SaaS", "Professional Services"] }, ar: { name: "أتمتة تهيئة العملاء", hook: "عميل جديد يوقع. يستلم قائمة تحقق مخصصة تلقائياً — بلا متابعة، بلا خطوات منسية.", before: "تُغلق الصفقة، ثم تتحول التهيئة إلى سلسلة رسائل متناثرة 'هل أرسلت ذلك؟' عبر واتساب والبريد والذاكرة.", after: "لحظة توقيع العميل، يستلم قائمة تحقق واضحة مبنية له خصيصاً — وتصلك أنت تنبيهاً عند نقص أي شيء من جانبه.", need: "خطوات التهيئة المعتادة لديك · مكان بيانات العملاء الجدد حالياً · رقم/أرقام واتساب استلام التنبيهات.", inLabel: "توقيع العميل", outLabel: "قائمة تحقق", bestFor: ["وكالات", "استشارات", "SaaS", "خدمات مهنية"] } },
+  { id: "SG4", category: "sales", icon: CalendarDays, outIcon: CalendarCheck2, en: { name: "Appointment Booking Assistant", hook: "Clients book their own slot. Confirmations and reminders go out automatically, on both sides.", before: "Booking a slot means back-and-forth messages to find a time that works, then hoping someone remembers to write it down before it's forgotten or double-booked.", after: "A client picks an open slot themselves. Both sides get an instant confirmation, and a reminder lands before the appointment — no back-and-forth, no double-booking.", need: "Your available hours/calendar · The booking details you need from clients · WhatsApp numbers for confirmations and reminders.", inLabel: "Slot requested", outLabel: "Confirmed + reminded", bestFor: ["Clinics", "Salons", "Consultants", "Real Estate"] }, ar: { name: "مساعد حجز المواعيد", hook: "العملاء يحجزون موعدهم بأنفسهم. التأكيدات والتذكيرات تُرسل تلقائياً للطرفين.", before: "حجز موعد يعني رسائل متبادلة للاتفاق على وقت مناسب، ثم الأمل أن يتذكر أحدهم تدوينه قبل أن يُنسى أو يتكرر حجزه.", after: "العميل يختار موعداً متاحاً بنفسه. يستلم الطرفان تأكيداً فورياً، وتذكيراً قبل الموعد — بلا رسائل متبادلة، بلا تكرار حجز.", need: "أوقاتك المتاحة/تقويمك · تفاصيل الحجز المطلوبة من العملاء · أرقام واتساب للتأكيد والتذكير.", inLabel: "طلب حجز", outLabel: "تأكيد وتذكير", bestFor: ["عيادات", "صالونات", "استشاريون", "عقارات"] } },
+  { id: "SG5", category: "sales", icon: FileText, outIcon: Send, en: { name: "Proposal & Quotation Generator", hook: "A client describes what they need. A professional proposal or quote is generated and sent — no manual drafting.", before: "Every quote starts from a blank document — pulling numbers from memory, formatting it to look presentable, then sending it hours later than you meant to.", after: "A client's request comes in. A branded, professional proposal is generated with the right numbers already in place, and sent before the conversation goes cold.", need: "Your pricing structure or rate card · A proposal template or brand details · Where client requests currently come in.", inLabel: "Request received", outLabel: "Proposal sent", bestFor: ["Agencies", "Contractors", "Consultants", "B2B Sales"] }, ar: { name: "مولّد العروض وعروض الأسعار", hook: "العميل يصف ما يحتاجه. عرض سعر أو مقترح احترافي يُنشأ ويُرسل — بلا صياغة يدوية.", before: "كل عرض سعر يبدأ من صفحة فارغة — استحضار الأرقام من الذاكرة، تنسيقها لتبدو مقبولة، ثم إرسالها بعد ساعات أكثر مما قصدت.", after: "طلب العميل يصل. عرض احترافي يحمل هويتك يُنشأ بالأرقام الصحيحة جاهزة، ويُرسل قبل أن يبرد الحديث.", need: "هيكل تسعيرك · قالب العرض أو تفاصيل هويتك · مصدر وصول طلبات العملاء حالياً.", inLabel: "استلام الطلب", outLabel: "إرسال العرض", bestFor: ["وكالات", "مقاولون", "استشاريون", "مبيعات B2B"] } },
+  { id: "OF1", category: "ops", icon: Camera, outIcon: Grid3x3, en: { name: "AI Expense Extraction", hook: "Photograph a receipt, or forward an invoice. The numbers land in your sheet — categorized, on their own.", before: "End of month, and you're sitting with a shoebox of receipts and a stack of invoice emails, typing every line into a spreadsheet by hand.", after: "A photo sent to WhatsApp, or an invoice forwarded to an inbox — either way, the expense appears in your sheet already categorized, ready for your accountant.", need: "The WhatsApp number or email address you'll send receipts/invoices to · Your expense categories · Access to the Google Sheet where expenses should land.", inLabel: "Receipt / invoice", outLabel: "Logged & categorized", bestFor: ["SMEs", "Restaurants", "Trading", "Any business with receipts"] }, ar: { name: "استخراج المصاريف بالذكاء الاصطناعي", hook: "صوّر إيصالاً، أو مرّر فاتورة. الأرقام تصل جدولك — مصنّفة، من تلقاء نفسها.", before: "نهاية الشهر، وأنت أمام علبة إيصالات وركام رسائل فواتير، تكتب كل سطر يدوياً في جدول بيانات.", after: "صورة تُرسل لواتساب، أو فاتورة تُمرّر لبريد إلكتروني — بأي طريقة، المصروف يظهر في جدولك مصنّفاً، جاهزاً لمحاسبك.", need: "رقم الواتساب أو البريد لاستقبال الإيصالات/الفواتير · فئات مصاريفك · الوصول لجدول جوجل المستهدف.", inLabel: "إيصال / فاتورة", outLabel: "مسجّل ومصنّف", bestFor: ["شركات صغيرة", "مطاعم", "تجارة", "أي عمل فيه إيصالات"] } },
+  { id: "OF2", category: "ops", icon: Grid3x3, outIcon: Mail, en: { name: "AI-Generated PDF Invoices", hook: "Add a row to your sheet. A branded, professional invoice is generated and emailed — done.", before: "Every invoice means opening a template, manually filling in client details, calculating totals, exporting to PDF, then remembering to actually send it.", after: "You add one row to a sheet. A polished, branded invoice appears as a PDF in the client's inbox — automatically.", need: "Your invoice template or brand details · The Google Sheet structure you'd like to use · Client email addresses in your records.", inLabel: "Row added", outLabel: "PDF invoice emailed", bestFor: ["Freelancers", "SMEs", "Agencies", "Trading"] }, ar: { name: "فواتير PDF تلقائية", hook: "أضف صفاً في جدولك. فاتورة احترافية بهويتك تُنشأ وتُرسل بالبريد — انتهى الأمر.", before: "كل فاتورة تعني فتح قالب، تعبئة بيانات العميل يدوياً، حساب الإجمالي، تصديرها PDF، ثم تذكّر إرسالها فعلياً.", after: "تضيف صفاً واحداً في الجدول. فاتورة أنيقة بهويتك تظهر كملف PDF في بريد العميل — تلقائياً.", need: "قالب فاتورتك أو تفاصيل هويتك · هيكل جدول جوجل الذي تريده · عناوين بريد عملائك.", inLabel: "إضافة صف", outLabel: "فاتورة PDF بالبريد", bestFor: ["مستقلون", "شركات صغيرة", "وكالات", "تجارة"] } },
+  { id: "OF3", category: "ops", icon: CalendarClock, outIcon: Bell, en: { name: "Invoice & Payment Reminder", hook: "Invoices go out, and follow-ups before and after the due date happen without you tracking a single one.", before: "Chasing late payments means remembering which invoice was sent when, then writing an awkward follow-up message yourself — or letting it slide because you forgot.", after: "Every invoice gets a gentle reminder before it's due, and a firmer one if it's late — automatically, without you checking a single date.", need: "Where your invoices and due dates are tracked · The tone/wording you'd like for reminders · WhatsApp or email for sending them.", inLabel: "Due date approaching", outLabel: "Reminder sent", bestFor: ["SMEs", "Agencies", "Freelancers", "Trading"] }, ar: { name: "تذكير الفواتير والمدفوعات", hook: "الفواتير تُرسل، والمتابعات قبل وبعد تاريخ الاستحقاق تحدث دون أن تتابع أي واحدة بنفسك.", before: "متابعة المدفوعات المتأخرة تعني تذكّر أي فاتورة أُرسلت ومتى، ثم كتابة رسالة متابعة محرجة بنفسك — أو تجاهلها لأنك نسيت.", after: "كل فاتورة تستلم تذكيراً لطيفاً قبل استحقاقها، وآخر أكثر حزماً إن تأخرت — تلقائياً، دون أن تراجع تاريخاً بنفسك.", need: "مكان تتبع فواتيرك وتواريخ استحقاقها · النبرة/الصياغة المفضلة للتذكيرات · واتساب أو بريد للإرسال.", inLabel: "اقتراب الاستحقاق", outLabel: "إرسال تذكير", bestFor: ["شركات صغيرة", "وكالات", "مستقلون", "تجارة"] } },
+  { id: "OF4", category: "ops", icon: BarChart3, outIcon: Newspaper, en: { name: "Daily Business Report", hook: "8am. One WhatsApp message tells you exactly how yesterday went — sales, leads, operations, finance, pending approvals, and anything critical.", before: "You have no real read on yesterday until you personally call around or dig through three different systems.", after: "You wake up to one WhatsApp message covering every part of the business that needs your attention — before your first coffee.", need: "Where your daily data lives · What matters most to you in a morning snapshot · The WhatsApp number that should receive it.", inLabel: "Yesterday's data", outLabel: "8am summary", bestFor: ["Owners", "Operations Managers", "Multi-branch businesses"] }, ar: { name: "التقرير اليومي للأعمال", hook: "الساعة 8 صباحاً. رسالة واتساب واحدة تخبرك بالضبط كيف سار الأمس — المبيعات، العملاء، العمليات، المالية، الموافقات المعلقة، وأي أمر حرج.", before: "لا رؤية حقيقية لديك عن الأمس حتى تتصل بنفسك أو تبحث في ثلاثة أنظمة مختلفة.", after: "تستيقظ على رسالة واتساب واحدة تغطي كل جزء من العمل يحتاج انتباهك — قبل فنجان قهوتك الأول.", need: "مكان بياناتك اليومية · ما يهمك أكثر في لمحة صباحية · رقم واتساب الاستلام.", inLabel: "بيانات الأمس", outLabel: "ملخص 8 صباحاً", bestFor: ["الملّاك", "مدراء العمليات", "أعمال متعددة الفروع"] } },
+  { id: "OF5", category: "ops", icon: FileSearch, outIcon: Check, en: { name: "Approval Routing Engine", hook: "A request — leave, purchase, or otherwise — gets routed to the right approver automatically, and everyone's notified the moment it's decided.", before: "An approval request means chasing someone on WhatsApp, waiting days for a reply, and often losing track of what was even asked for in the first place.", after: "The request lands with the right approver automatically. A decision comes back, the record updates itself, and everyone involved is notified instantly.", need: "Your approval chain (who approves what) · The types of requests to route · Where requests currently come in.", inLabel: "Request submitted", outLabel: "Routed + decided", bestFor: ["SMEs", "HR Teams", "Operations", "Multi-department businesses"] }, ar: { name: "محرك توجيه الموافقات", hook: "طلب — إجازة، شراء، أو غيره — يُوجَّه تلقائياً للمعتمد الصحيح، ويُخطر الجميع لحظة اتخاذ القرار.", before: "طلب الموافقة يعني ملاحقة شخص على واتساب، انتظار الرد أياماً، وغالباً فقدان تتبع ما طُلب أصلاً.", after: "الطلب يصل تلقائياً للمعتمد الصحيح. القرار يعود، السجل يُحدَّث بنفسه، ويُخطر جميع المعنيين فوراً.", need: "سلسلة اعتمادك (من يوافق على ماذا) · أنواع الطلبات المطلوب توجيهها · مصدر وصول الطلبات حالياً.", inLabel: "تقديم الطلب", outLabel: "توجيه وقرار", bestFor: ["شركات صغيرة", "فرق الموارد البشرية", "العمليات", "أعمال متعددة الأقسام"] } },
+  { id: "CX1", category: "cx", icon: MessageCircle, outIcon: Bot, en: { name: "AI Customer Interaction Agent", hook: "Your customers message you — in text, a voice note, a photo, or a PDF — any hour. They get a real, useful answer instantly.", before: "Customers ask the same five questions all day, on top of the ones that actually need you. Answering all of them personally, at all hours, isn't possible.", after: "Customers message anytime, in whatever form is easiest for them. Routine questions get answered immediately, in your tone; anything real gets flagged straight to you.", need: "Your FAQ / knowledge base content · The WhatsApp Business number to connect · Which situations should escalate straight to a human.", inLabel: "Customer message", outLabel: "Instant AI reply", bestFor: ["Retail", "Clinics", "Agencies", "Any customer-facing business"] }, ar: { name: "وكيل تفاعل العملاء بالذكاء الاصطناعي", hook: "عملاؤك يراسلونك — نصاً، رسالة صوتية، صورة، أو PDF — بأي ساعة. يستلمون رداً حقيقياً ومفيداً فوراً.", before: "العملاء يسألون نفس الأسئلة الخمسة طوال اليوم، فوق ما يحتاج منك فعلاً. الرد على الجميع شخصياً، بكل الساعات، غير ممكن.", after: "العملاء يراسلون بأي وقت، بأي شكل يناسبهم. الأسئلة الروتينية تُجاب فوراً، بأسلوبك؛ وأي أمر حقيقي يصلك مباشرة.", need: "محتوى الأسئلة الشائعة/قاعدة معرفتك · رقم واتساب الأعمال للربط · الحالات التي تحتاج تصعيداً لموظف بشري.", inLabel: "رسالة عميل", outLabel: "رد فوري بالذكاء الاصطناعي", bestFor: ["تجزئة", "عيادات", "وكالات", "أي عمل يخدم عملاء"] } },
+  { id: "CX2", category: "cx", icon: Globe2, outIcon: Bell, en: { name: "Website Monitoring", hook: "Your website or a competitor's changes. You get a plain-language summary of what changed and why it matters — not just 'something changed.'", before: "You either check competitor sites manually (rarely) or use a generic monitor that pings you with a raw diff you have to decode yourself.", after: "A page changes — pricing, a new product, a policy update — and you get one WhatsApp message explaining what changed and what it might mean for you.", need: "The website(s) or specific pages to monitor · How often you want checks run · Where alerts should go.", inLabel: "Page changes", outLabel: "Plain-language alert", bestFor: ["Retail", "Agencies", "Competitive industries"] }, ar: { name: "مراقبة المواقع الإلكترونية", hook: "موقعك أو موقع منافس يتغيّر. تستلم ملخصاً بلغة بسيطة عمّا تغيّر ولماذا يهم — لا مجرد 'حدث تغيير'.", before: "إما تتابع مواقع المنافسين يدوياً (نادراً)، أو تستخدم أداة مراقبة عامة تُرسل لك فروقات خام عليك فك رموزها بنفسك.", after: "صفحة تتغيّر — سعر، منتج جديد، تحديث سياسة — وتستلم رسالة واتساب واحدة تشرح ما تغيّر وماذا يعني لك.", need: "الموقع أو الصفحات المطلوب مراقبتها · وتيرة الفحص المطلوبة · وجهة التنبيهات.", inLabel: "تغيّر الصفحة", outLabel: "تنبيه بلغة بسيطة", bestFor: ["تجزئة", "وكالات", "قطاعات تنافسية"] } },
+  { id: "CX3", category: "cx", icon: Star, outIcon: Activity, en: { name: "Customer Feedback Analyzer", hook: "Reviews and feedback are read and scored automatically — you get a heads-up the moment something turns negative.", before: "Feedback comes in across reviews, forms, and messages, and reading through all of it regularly — let alone catching a bad one early — rarely happens.", after: "Every piece of feedback is read and scored the moment it arrives. A genuinely negative one reaches you immediately, instead of surfacing weeks later.", need: "Where feedback currently comes in · What counts as urgent enough to flag immediately · Where alerts should go.", inLabel: "Feedback received", outLabel: "Scored + flagged", bestFor: ["Restaurants", "Clinics", "Retail", "Service businesses"] }, ar: { name: "محلل ملاحظات العملاء", hook: "التقييمات والملاحظات تُقرأ وتُصنَّف تلقائياً — تصلك رسالة فورية لحظة ظهور ملاحظة سلبية.", before: "الملاحظات تصل عبر التقييمات والنماذج والرسائل، وقراءتها جميعاً بانتظام — ناهيك عن رصد السلبي منها مبكراً — نادراً ما يحدث فعلياً.", after: "كل ملاحظة تُقرأ وتُصنَّف لحظة وصولها. الملاحظة السلبية الحقيقية تصلك فوراً، بدلاً من ظهورها بعد أسابيع.", need: "مصدر وصول الملاحظات حالياً · ما يُعد عاجلاً بما يكفي للتنبيه الفوري · وجهة التنبيهات.", inLabel: "استلام ملاحظة", outLabel: "تصنيف وتنبيه", bestFor: ["مطاعم", "عيادات", "تجزئة", "أعمال خدمية"] } },
+  { id: "PP1", category: "people", icon: FileSearch, outIcon: ClipboardList, en: { name: "AI CV Screening", hook: "Applications come in. Each candidate is scored and summarized against what you're actually looking for — before you open a single CV.", before: "Twenty CVs land for one role, and reviewing each one properly eats an entire afternoon you don't have.", after: "Every application is automatically scored against your criteria, with a short summary of strengths and gaps — you start with your top five, not all twenty.", need: "The job description and the qualities that matter most · Where applications currently arrive · Your hiring manager's WhatsApp or email for summaries.", inLabel: "CV received", outLabel: "Scored + ranked", bestFor: ["HR Teams", "Recruitment Agencies", "Growing SMEs"] }, ar: { name: "فرز السير الذاتية بالذكاء الاصطناعي", hook: "الطلبات تصل. كل مرشح يُصنَّف ويُلخَّص وفق ما تبحث عنه فعلاً — قبل أن تفتح سيرة ذاتية واحدة.", before: "عشرون سيرة ذاتية تصل لوظيفة واحدة، ومراجعة كل واحدة بجدية تستهلك عصراً كاملاً لا تملكه.", after: "كل طلب يُصنَّف تلقائياً وفق معاييرك، مع ملخص قصير لنقاط القوة والفجوات — تبدأ بأفضل خمسة، لا العشرين جميعاً.", need: "الوصف الوظيفي والصفات الأهم لديك · مصدر وصول الطلبات حالياً · واتساب أو بريد مسؤول التوظيف.", inLabel: "استلام سيرة ذاتية", outLabel: "تصنيف وترتيب", bestFor: ["فرق الموارد البشرية", "وكالات التوظيف", "شركات نامية"] } },
+  { id: "PP2", category: "people", icon: Camera, outIcon: Grid3x3, en: { name: "Construction Project Management", hook: "Site work gets logged in real time — a photo, a task update, a status — all landing in one place, from the field.", before: "Site progress lives in scattered phone photos and verbal updates, and by the time it reaches the office, nobody's sure what's actually done.", after: "Your site team logs progress and photos directly from their phones. It's organized automatically, so you always know exactly where a project stands.", need: "Your current project/task structure · Team members who'll be logging updates, and their Telegram usage · The Google Sheet you'd like progress tracked in.", inLabel: "Site update / photo", outLabel: "Tracked in Sheets", bestFor: ["Construction", "Contractors", "Facilities Management"] }, ar: { name: "إدارة مشاريع البناء", hook: "أعمال الموقع تُسجَّل لحظياً — صورة، تحديث مهمة، حالة — كلها تصل مكاناً واحداً، من الميدان.", before: "تقدّم الموقع يعيش في صور هاتف متناثرة وتحديثات شفهية، وبحلول وصولها للمكتب، لا أحد متأكد مما أُنجز فعلاً.", after: "فريق الموقع يسجّل التقدم والصور مباشرة من هواتفهم. يُنظَّم تلقائياً، فتعرف دائماً أين يقف المشروع بالضبط.", need: "هيكل مشاريعك/مهامك الحالي · أعضاء الفريق المسؤولين عن التحديث واستخدامهم لتيليجرام · جدول جوجل المطلوب تتبع التقدم فيه.", inLabel: "تحديث/صورة موقع", outLabel: "تتبع في Sheets", bestFor: ["البناء", "المقاولون", "إدارة المرافق"] } },
+  { id: "PP3", category: "people", icon: UserPlus, outIcon: ClipboardCheck, en: { name: "Employee Onboarding", hook: "A new hire's accounts, welcome materials, and induction schedule are all set up the moment they're added — no manual checklist.", before: "A new hire starts, and Day 1 becomes a scramble of setting up accounts, finding the right documents, and hoping nothing important got missed.", after: "The moment a new hire is added, their accounts, welcome pack, and induction schedule are ready — ahead of their first day, not during it.", need: "Your standard onboarding steps and accounts to set up · Where new hire details are entered · Who should be notified at each step.", inLabel: "New hire added", outLabel: "Accounts + schedule ready", bestFor: ["HR Teams", "Growing SMEs", "Agencies"] }, ar: { name: "تهيئة الموظفين الجدد", hook: "حسابات الموظف الجديد، مواد الترحيب، وجدول التعريف — كلها تُجهَّز لحظة إضافته — بلا قائمة تحقق يدوية.", before: "موظف جديد يبدأ، ويتحول اليوم الأول إلى تهافت لإعداد الحسابات وإيجاد المستندات الصحيحة والأمل ألا يُنسى شيء مهم.", after: "لحظة إضافة الموظف الجديد، تكون حساباته وحزمة الترحيب وجدول التعريف جاهزة — قبل يومه الأول، لا خلاله.", need: "خطوات التهيئة القياسية والحسابات المطلوب إعدادها · مكان إدخال بيانات الموظف الجديد · من يجب إخطاره في كل خطوة.", inLabel: "إضافة موظف جديد", outLabel: "حسابات وجدول جاهز", bestFor: ["فرق الموارد البشرية", "شركات نامية", "وكالات"] } },
+  { id: "PP4", category: "people", icon: MessageCircle, outIcon: Bot, en: { name: "AI Knowledge Assistant", hook: "Your team asks a question about company policy or process, and gets an instant, accurate answer — pulled from your own documents.", before: "A team member has a policy question, and the answer means interrupting a manager or digging through a folder of documents nobody's updated in a year.", after: "The same question gets typed into WhatsApp instead. An instant, accurate answer comes back — pulled directly from your actual, current documents.", need: "Your policy/process documents (a folder is enough — we structure it) · The internal WhatsApp or Slack channel to connect · Which topics should escalate to HR/management.", inLabel: "Team question", outLabel: "Instant answer", bestFor: ["HR Teams", "Growing SMEs", "Multi-location businesses"] }, ar: { name: "مساعد المعرفة الداخلي", hook: "أحد فريقك يسأل عن سياسة أو إجراء، ويستلم رداً فورياً ودقيقاً — مستخرجاً من مستنداتكم الخاصة.", before: "أحد الفريق لديه سؤال عن سياسة، والحصول على الجواب يعني مقاطعة مدير أو البحث في مجلد مستندات لم يُحدَّث منذ عام.", after: "نفس السؤال يُكتب في واتساب بدلاً من ذلك. جواب فوري ودقيق يعود — مستخرجاً مباشرة من مستنداتكم الحالية الفعلية.", need: "مستندات سياساتكم/إجراءاتكم (مجلد واحد يكفي — ننظّمه) · قناة واتساب أو Slack الداخلية للربط · المواضيع التي تحتاج تصعيداً للموارد البشرية/الإدارة.", inLabel: "سؤال من الفريق", outLabel: "جواب فوري", bestFor: ["فرق الموارد البشرية", "شركات نامية", "أعمال متعددة الفروع"] } },
+  { id: "PP5", category: "people", icon: Mic, outIcon: ClipboardList, en: { name: "Meeting-to-Tasks Automation", hook: "A meeting gets recorded. The summary, decisions, and action items — with owners assigned — are ready before you're back at your desk.", before: "A meeting ends with a dozen decisions made verbally, and by the next day half of them are forgotten or nobody's sure who owns what.", after: "The recording is processed automatically. A clean summary with decisions and action items — each with an owner — lands before you're even back at your desk.", need: "How your meetings are recorded · Where tasks should be logged · Who should receive the summary.", inLabel: "Meeting recorded", outLabel: "Tasks assigned", bestFor: ["Management Teams", "Agencies", "Consultancies"] }, ar: { name: "أتمتة تحويل الاجتماعات إلى مهام", hook: "الاجتماع يُسجَّل. الملخص والقرارات ومهام العمل — مع تحديد المسؤولين — جاهزة قبل عودتك لمكتبك.", before: "الاجتماع ينتهي بعشرات القرارات المتخذة شفهياً، وبحلول اليوم التالي، نصفها منسي أو لا أحد متأكد من مسؤوليته.", after: "التسجيل يُعالَج تلقائياً. ملخص واضح بالقرارات ومهام العمل — لكل منها مسؤول — يصلك قبل عودتك لمكتبك حتى.", need: "طريقة تسجيل اجتماعاتكم · مكان تسجيل المهام · من يجب أن يستلم الملخص.", inLabel: "تسجيل الاجتماع", outLabel: "مهام موزعة", bestFor: ["فرق الإدارة", "وكالات", "استشارات"] } },
+  { id: "PW1", category: "personal", icon: Mail, outIcon: MessageCircle, en: { name: "AI Inbox Manager", hook: "Your inbox gets read for you. You get the actions that actually need you — not the full flood.", before: "Important requests, approvals, and deadlines sit buried in an inbox with hundreds of unread messages — easy to miss, easy to forget.", after: "One daily WhatsApp message tells you exactly what needs a decision or action from you today — everything else stays out of your way.", need: "Access to the email account to be monitored · What counts as 'needs action' for you · How often you want the digest.", inLabel: "Inbox", outLabel: "Action-only digest", bestFor: ["Executives", "Busy Professionals", "Founders"] }, ar: { name: "مدير البريد الوارد بالذكاء الاصطناعي", hook: "بريدك الوارد يُقرأ نيابة عنك. تستلم فقط ما يحتاج فعلاً إجراءً منك — لا الفيضان كاملاً.", before: "الطلبات المهمة والموافقات والمواعيد النهائية تُدفن في بريد به مئات الرسائل غير المقروءة — سهلة الضياع، سهلة النسيان.", after: "رسالة واتساب واحدة يومياً تخبرك بالضبط بما يحتاج قراراً أو إجراءً منك اليوم — كل شيء آخر يبقى بعيداً عن طريقك.", need: "الوصول لحساب البريد المطلوب مراقبته · ما يُعد 'يحتاج إجراءً' بالنسبة لك · وتيرة الملخص المطلوبة.", inLabel: "البريد الوارد", outLabel: "ملخص الإجراءات فقط", bestFor: ["تنفيذيون", "محترفون مشغولون", "مؤسسو شركات"] } },
+  { id: "PW2", category: "personal", icon: Camera, outIcon: Utensils, en: { name: "Meal & Drink Logging", hook: "Photograph your meal or drink. Get a full nutritional breakdown in seconds — and a pattern report every week.", before: "You have no real sense of what you're actually eating day to day, and tracking it manually is tedious enough that most people quit within a week.", after: "A photo sent to WhatsApp becomes a full nutritional breakdown instantly. A weekly summary shows your patterns — best days, worst days, what to watch.", need: "The WhatsApp number that will send meal/drink photos · Any dietary goals or conditions to factor in (optional) · Preferred report frequency.", inLabel: "Meal photo", outLabel: "Nutrition breakdown", bestFor: ["Individuals", "Fitness-focused", "Health-conscious professionals"], disclaimer: "Taskless is not a medical service. Nutritional data is AI-estimated and for guidance only. Please consult a licensed professional for medical concerns." }, ar: { name: "تسجيل الوجبات والمشروبات", hook: "صوّر وجبتك أو مشروبك. احصل على تحليل غذائي كامل خلال ثوانٍ — وتقرير أنماط أسبوعي.", before: "لا فكرة حقيقية لديك عمّا تأكله فعلاً يومياً، وتتبعه يدوياً مملّ بما يكفي ليتوقف معظم الناس خلال أسبوع.", after: "صورة تُرسل لواتساب تتحول لتحليل غذائي كامل فوراً. ملخص أسبوعي يوضح أنماطك — أفضل الأيام وأسوأها وما يجب مراقبته.", need: "رقم واتساب إرسال صور الوجبات/المشروبات · أي أهداف أو حالات غذائية (اختياري) · وتيرة التقرير المفضلة.", inLabel: "صورة وجبة", outLabel: "تحليل غذائي", bestFor: ["أفراد", "مهتمون باللياقة", "محترفون مهتمون بالصحة"], disclaimer: "Taskless ليست خدمة طبية. البيانات الغذائية مقدّرة بالذكاء الاصطناعي ولأغراض إرشادية فقط. يرجى استشارة مختص مرخّص لأي مخاوف طبية." } },
 ];
 
-/* ---------------------------------------------------------
-   ICON_MAP — mirrors the ICON_REGISTRY tab exactly.
-   Fetched products carry icon_key/out_icon_key strings (a Sheet cell
-   can't hold a component); this is what turns that string back into
-   a real icon. Add a row here + in ICON_REGISTRY together, always.
---------------------------------------------------------- */
 const ICON_MAP = {
   message_circle: MessageCircle, receipt: Receipt, bar_chart: BarChart3, calendar_clock: CalendarClock,
   star: Star, sparkles: Sparkles, share: Share2, newspaper: Newspaper, calendar_days: CalendarDays,
@@ -168,19 +172,15 @@ const ICON_MAP = {
   clipboard_check: ClipboardCheck, calendar_check: CalendarCheck2, wallet: Wallet, pill: Pill,
   clipboard_list: ClipboardList, camera: Camera, moon: Moon, activity: Activity, droplet: Droplet,
   line_chart: LineChart, sun: Sun, grid: Grid3x3, check: Check, utensils: Utensils,
+  globe: Globe2, map_pin: MapPin, user_plus: UserPlus, mic: Mic, send: Send, bot: Bot,
 };
 
-// Replace this with your real n8n webhook once SYSTEM_ProductLibraryFetcher exists
-// (same pattern as CONFIG_API in taskless-forms). Left as a placeholder, the site
-// silently keeps using FALLBACK_PRODUCTS below — nothing breaks today.
 const PRODUCTS_API = "REPLACE_WITH_YOUR_N8N_URL/webhook/products";
 const REQUESTS_API = "https://script.google.com/macros/s/AKfycbx6aL1k1GnAuYD2ca2KGgSTN1G5EJSoDLFqyMihp8orCXsRYFZoOyOGPAxp_t8Mlp36/exec";
 
-// Converts one row from the LIBRARY sheet (icon_key strings) into the shape
-// every component below already expects (real icon components).
 function normalizeProduct(raw) {
   return {
-    id: raw.id, seg: raw.segment,
+    id: raw.id, category: raw.category,
     icon: ICON_MAP[raw.icon_key] || Sparkles,
     outIcon: ICON_MAP[raw.out_icon_key] || Sparkles,
     en: raw.en, ar: raw.ar,
@@ -188,12 +188,10 @@ function normalizeProduct(raw) {
 }
 
 function shuffle(arr) { const a = [...arr]; for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+function audienceOf(p) { return p.category === "personal" ? "individual" : "business"; }
 
-// Delivery-time estimate per workflow — a stated assumption, not a fabricated stat.
-// SIMPLE: single trigger, single alert, minimal logic. COMPLEX: multi-platform,
-// AI vision/summarization, or multi-step confirmation loops. Everything else = standard.
-const SIMPLE_DELIVERY_IDS = new Set(["B1", "B5", "S1", "S4", "P2", "H2", "H4"]);
-const COMPLEX_DELIVERY_IDS = new Set(["C1", "C2", "B2", "S2", "P4", "H1", "H3"]);
+const SIMPLE_DELIVERY_IDS = new Set(["SG1", "SG4", "OF3", "CX2", "PW1"]);
+const COMPLEX_DELIVERY_IDS = new Set(["SG2", "SG5", "OF1", "OF2", "OF5", "CX1", "PP1", "PP4", "PP5", "PW2"]);
 function deliveryLabel(id, t) {
   if (SIMPLE_DELIVERY_IDS.has(id)) return t.deliverySimple;
   if (COMPLEX_DELIVERY_IDS.has(id)) return t.deliveryComplex;
@@ -210,9 +208,6 @@ function useReveal() {
 }
 function scrollToId(id, close) { const el = document.getElementById(id); if (el) el.scrollIntoView({ behavior: "smooth", block: "start" }); if (close) close(); }
 
-/* ---------------------------------------------------------
-   MAIN
---------------------------------------------------------- */
 export default function TasklessLanding() {
   const [theme, setTheme] = useState("dark");
   const [lang, setLang] = useState("en");
@@ -220,7 +215,7 @@ export default function TasklessLanding() {
   const t = UI[lang]; const rtl = lang === "ar"; const th = THEMES[theme];
   const [products, setProducts] = useState(FALLBACK_PRODUCTS);
   useEffect(() => {
-    if (PRODUCTS_API.startsWith("REPLACE_WITH")) return; // not wired up yet — fallback data stays active
+    if (PRODUCTS_API.startsWith("REPLACE_WITH")) return;
     fetch(PRODUCTS_API)
       .then((r) => r.json())
       .then((data) => {
@@ -228,7 +223,7 @@ export default function TasklessLanding() {
           setProducts(data.products.map(normalizeProduct));
         }
       })
-      .catch(() => { /* network/CORS issue — fallback data stays active, site keeps working */ });
+      .catch(() => {});
   }, []);
   const featured = useMemo(() => shuffle(products).slice(0, 5), [products]);
   const [active, setActive] = useState(null);
@@ -289,7 +284,7 @@ export default function TasklessLanding() {
               <div style={{ borderTop: `1px solid ${th.border}`, background: th.elevated }}>
                 <div style={{ maxWidth: 1180, margin: "0 auto", padding: "18px 24px", display: "flex", flexWrap: "wrap", gap: 10, alignItems: "center", justifyContent: "space-between" }}>
                   <nav style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
-                    {[["section-hero", t.menu.home], ["section-products", t.menu.products], ["section-how", t.menu.how || "How it works"], ["section-why", t.menu.why], ["section-contact", t.menu.contact], ["section-faq", t.menu.faq]].map(([id, label]) => (
+                    {[["section-hero", t.menu.home], ["section-products", t.menu.products], ["section-how", t.menu.how], ["section-why", t.menu.why], ["section-contact", t.menu.contact], ["section-faq", t.menu.faq]].map(([id, label]) => (
                       <button key={id} className="menu-link" onClick={() => scrollToId(id, () => setMenuOpen(false))} style={{ background: "none", border: "none", color: th.text, fontSize: 14.5, fontWeight: 600, padding: "8px 12px", borderRadius: 8, cursor: "pointer" }}>{label}</button>
                     ))}
                   </nav>
@@ -393,9 +388,6 @@ export default function TasklessLanding() {
   );
 }
 
-/* ---------------------------------------------------------
-   Network diagram — spider circuit, 15 tools around Taskless
---------------------------------------------------------- */
 function NetworkDiagram({ th, heroDraw }) {
   const CX = 240, CY = 240, R1 = 118, R2 = 200;
   const inner = INNER_TOOLS.map((tool, i) => { const a = (Math.PI * 2 * i) / INNER_TOOLS.length - Math.PI / 2; return { ...tool, x: CX + R1 * Math.cos(a), y: CY + R1 * Math.sin(a) }; });
@@ -410,11 +402,8 @@ function NetworkDiagram({ th, heroDraw }) {
         </defs>
         <circle cx={CX} cy={CY} r={64} fill="url(#hubglow)" style={{ animation: "hubglow 3s ease-in-out infinite" }} />
 
-        {/* outer web — faint circuit traces between adjacent outer nodes */}
         {outer.map((n, i) => { const nx = outer[(i + 1) % outer.length]; return <line key={`web-${i}`} x1={n.x} y1={n.y} x2={nx.x} y2={nx.y} stroke={th.borderStrong} strokeWidth="1" opacity="0.35" />; })}
-        {/* branch lines: outer -> nearest inner */}
         {outer.map((n, i) => <line key={`branch-${i}`} x1={n.x} y1={n.y} x2={n.nearest.x} y2={n.nearest.y} stroke="url(#linegrad)" strokeWidth="1" opacity="0.22" />)}
-        {/* spokes: hub -> inner, animated */}
         {inner.map((n, i) => (
           <path key={`spoke-${i}`} id={`spoke-${i}`} d={`M${CX},${CY} L${n.x},${n.y}`} stroke="url(#linegrad)" strokeWidth="1.6" opacity="0.5" fill="none" strokeDasharray="220" strokeDashoffset={heroDraw ? 0 : 220} style={{ transition: `stroke-dashoffset 1s ease ${0.12 * i}s` }} />
         ))}
@@ -446,10 +435,7 @@ function NetworkDiagram({ th, heroDraw }) {
   );
 }
 
-/* ---------------------------------------------------------
-   Mini flow — customized per product
---------------------------------------------------------- */
-function MiniFlow({ fromIcon: FromIcon, fromColor, toIcon: ToIcon, fromLabel, toLabel, th, automateLabel, viaText, size = "sm" }) {
+function MiniFlow({ fromIcon: FromIcon, fromColor, toIcon: ToIcon, fromLabel, toLabel, th, automateLabel, size = "sm" }) {
   const h = size === "sm" ? 56 : 68;
   const nodes = [{ Icon: FromIcon, c: fromColor, label: fromLabel }, { Icon: Sparkles, c: "#8B5CF6", label: automateLabel }, { Icon: ToIcon, c: "#06B6D4", label: toLabel }];
   const xs = [18, 100, 182];
@@ -472,23 +458,30 @@ function MiniFlow({ fromIcon: FromIcon, fromColor, toIcon: ToIcon, fromLabel, to
   );
 }
 
-/* ---------------------------------------------------------
-   Small components
---------------------------------------------------------- */
 function TLogo({ size = 26 }) {
   return <svg width={size} height={size} viewBox="0 0 40 40"><defs><linearGradient id="tgradnav" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stopColor="#2563EB" /><stop offset="100%" stopColor="#06B6D4" /></linearGradient></defs><path d="M6 8 H34 M20 8 V32 Q20 36 24 34" stroke="url(#tgradnav)" strokeWidth="5" fill="none" strokeLinecap="round" /></svg>;
 }
 function IconToggle({ children, onClick, th, label, wide }) {
   return <button onClick={onClick} aria-label={label} title={label} style={{ background: th.elevated, border: `1px solid ${th.borderStrong}`, color: th.text, borderRadius: 10, padding: wide ? "8px 12px" : "8px", gap: 5, fontSize: 12.5, fontWeight: 600, cursor: "pointer" }}>{children}</button>;
 }
+function AudienceBadge({ p, t, th }) {
+  const aud = audienceOf(p);
+  const Icon = aud === "business" ? Building2 : User;
+  return (
+    <span style={{ display: "inline-flex", alignItems: "center", gap: 4, fontSize: 10, fontWeight: 600, color: th.muted3 }}>
+      <Icon size={11} /> {t.audienceLabels[aud]}
+    </span>
+  );
+}
 function ProductCard({ p, i, inView, lang, rtl, th, t, onOpen }) {
-  const color = SEGMENT_COLORS[p.seg]; const d = p[lang]; const Icon = p.icon;
+  const color = CATEGORY_COLORS[p.category]; const d = p[lang]; const Icon = p.icon;
   return (
     <div className="card card-hover" style={{ scrollSnapAlign: "start", minWidth: 264, maxWidth: 264, borderRadius: 18, padding: 22, background: th.elevated, border: `1px solid ${th.border}`, opacity: inView ? 1 : 0, transform: inView ? "translateY(0) scale(1)" : "translateY(28px) scale(0.96)", transition: `opacity .6s cubic-bezier(.22,1,.36,1) ${i * 0.12}s, transform .6s cubic-bezier(.22,1,.36,1) ${i * 0.12}s, box-shadow .25s ease, border-color .25s ease` }}>
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 10 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 8 }}><span style={{ width: 7, height: 7, borderRadius: "50%", background: color }} /><span style={{ fontSize: 11, letterSpacing: 1, textTransform: "uppercase", color: th.muted3 }}>{t.segLabels[p.seg]}</span></div>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 8 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 8 }}><span style={{ width: 7, height: 7, borderRadius: "50%", background: color }} /><span style={{ fontSize: 11, letterSpacing: 1, textTransform: "uppercase", color: th.muted3 }}>{t.categoryLabels[p.category]}</span></div>
         <span style={{ fontSize: 10.5, fontWeight: 600, color: "#06B6D4", background: "#06B6D41A", borderRadius: 6, padding: "2px 7px" }}>{deliveryLabel(p.id, t)}</span>
       </div>
+      <div style={{ marginBottom: 8 }}><AudienceBadge p={p} t={t} th={th} /></div>
       <h3 className="display" style={{ fontSize: 17.5, fontWeight: 700, margin: "0 0 8px" }}>{d.name}</h3>
       <p style={{ fontSize: 13, color: th.muted2, lineHeight: 1.5, minHeight: 40, margin: "0 0 10px" }}>{d.hook}</p>
       <MiniFlow fromIcon={Icon} fromColor={color} toIcon={p.outIcon} fromLabel={d.inLabel} toLabel={d.outLabel} th={th} automateLabel={t.automateLabel} />
@@ -497,22 +490,55 @@ function ProductCard({ p, i, inView, lang, rtl, th, t, onOpen }) {
   );
 }
 function DetailDrawer({ product, lang, rtl, th, t, onClose, onRequest }) {
-  const color = SEGMENT_COLORS[product.seg]; const d = product[lang]; const Icon = product.icon;
+  const color = CATEGORY_COLORS[product.category]; const d = product[lang]; const Icon = product.icon;
   return (
     <div style={{ position: "fixed", inset: 0, zIndex: 50, display: "flex", alignItems: "flex-end", justifyContent: "center" }}>
       <div onClick={onClose} style={{ position: "absolute", inset: 0, background: th.overlay, backdropFilter: "blur(3px)" }} />
       <div style={{ position: "relative", width: "100%", maxWidth: 560, maxHeight: "88vh", overflowY: "auto", background: th.elevated, borderTopLeftRadius: 24, borderTopRightRadius: 24, padding: "32px 28px 40px", border: `1px solid ${th.border}`, animation: "slideup .35s ease", textAlign: rtl ? "right" : "left" }}>
         <button onClick={onClose} aria-label="Close" style={{ position: "absolute", top: 20, [rtl ? "left" : "right"]: 20, background: "none", border: "none", color: th.muted2, cursor: "pointer" }}><X size={22} /></button>
         <div style={{ width: 48, height: 48, borderRadius: 14, background: `${color}22`, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 16 }}><Icon size={22} color={color} /></div>
-        <span style={{ fontSize: 11, letterSpacing: 1, textTransform: "uppercase", color }}>{t.segLabels[product.seg]}</span>
-        <h2 className="display" style={{ fontSize: 24, fontWeight: 700, margin: "8px 0 18px" }}>{d.name}</h2>
+        <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 4 }}>
+          <span style={{ fontSize: 11, letterSpacing: 1, textTransform: "uppercase", color }}>{t.categoryLabels[product.category]}</span>
+          <AudienceBadge p={product} t={t} th={th} />
+        </div>
+        <h2 className="display" style={{ fontSize: 24, fontWeight: 700, margin: "8px 0 14px" }}>{d.name}</h2>
+
+        {d.bestFor && d.bestFor.length > 0 && (
+          <div style={{ marginBottom: 18 }}>
+            <div style={{ fontSize: 11, letterSpacing: 0.5, color: th.muted3, fontWeight: 600, marginBottom: 8 }}>{t.bestForLabel}</div>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+              {d.bestFor.map((tag, i) => (
+                <span key={i} style={{ fontSize: 11.5, fontWeight: 600, color: th.muted2, background: th.bg, border: `1px solid ${th.borderStrong}`, borderRadius: 8, padding: "4px 9px" }}>{tag}</span>
+              ))}
+            </div>
+          </div>
+        )}
+
         <div style={{ marginBottom: 22, padding: "18px 4px", borderTop: `1px solid ${th.border}`, borderBottom: `1px solid ${th.border}` }}>
           <MiniFlow fromIcon={Icon} fromColor={color} toIcon={product.outIcon} fromLabel={d.inLabel} toLabel={d.outLabel} th={th} automateLabel={t.automateLabel} size="lg" />
         </div>
         <Block label={t.drawer.before} text={d.before} th={th} />
         <Block label={t.drawer.after} text={d.after} color={color} th={th} />
         <Block label={t.drawer.need} text={d.need} th={th} />
-        <button className="cta-hover" style={{ ...btnPrimary, width: "100%", marginTop: 12, justifyContent: "center" }} onClick={() => { onRequest(); onClose(); setTimeout(() => scrollToId("section-contact"), 150); }}>{t.drawer.cta} <ArrowRight size={16} style={{ [rtl ? "marginRight" : "marginLeft"]: 6, transform: rtl ? "rotate(180deg)" : "none" }} /></button>
+
+        <div style={{ marginBottom: 20, borderRadius: 12, border: `1px solid ${th.border}`, padding: 16 }}>
+          <div style={{ fontSize: 12, fontWeight: 700, marginBottom: 10 }}>{t.deliverablesTitle}</div>
+          <div style={{ marginBottom: 10 }}>
+            <div style={{ fontSize: 12.5, fontWeight: 600, color: th.text }}>{t.transferTitle}</div>
+            <p style={{ fontSize: 12.5, color: th.muted2, margin: "3px 0 0", lineHeight: 1.5 }}>{t.transferBody}</p>
+          </div>
+          <div>
+            <div style={{ fontSize: 12.5, fontWeight: 600, color: th.text }}>{t.hostedTitle}</div>
+            <p style={{ fontSize: 12.5, color: th.muted2, margin: "3px 0 0", lineHeight: 1.5 }}>{t.hostedBody}</p>
+          </div>
+          <p style={{ fontSize: 11.5, color: th.muted3, fontStyle: "italic", marginTop: 10, marginBottom: 0 }}>{t.customizableNote}</p>
+        </div>
+
+        {d.disclaimer && (
+          <p style={{ fontSize: 11, color: th.muted3, lineHeight: 1.6, marginBottom: 20, padding: 10, background: th.bg, borderRadius: 8 }}>{d.disclaimer}</p>
+        )}
+
+        <button className="cta-hover" style={{ ...btnPrimary, width: "100%", marginTop: 4, justifyContent: "center" }} onClick={() => { onRequest(); onClose(); setTimeout(() => scrollToId("section-contact"), 150); }}>{t.drawer.cta} <ArrowRight size={16} style={{ [rtl ? "marginRight" : "marginLeft"]: 6, transform: rtl ? "rotate(180deg)" : "none" }} /></button>
       </div>
     </div>
   );
@@ -522,14 +548,14 @@ function Block({ label, text, color, th }) {
 }
 function CatalogView({ products, t, th, rtl, lang, onBack, onOpen }) {
   const [query, setQuery] = useState("");
-  const [activeSeg, setActiveSeg] = useState("all");
-  const segments = ["all", "business", "creators", "students", "parents", "health"];
+  const [activeCat, setActiveCat] = useState("all");
+  const categories = ["all", "sales", "ops", "cx", "people", "personal"];
   const filtered = products.filter((p) => {
     const d = p[lang];
-    const matchesSeg = activeSeg === "all" || p.seg === activeSeg;
+    const matchesCat = activeCat === "all" || p.category === activeCat;
     const q = query.trim().toLowerCase();
     const matchesQuery = !q || d.name.toLowerCase().includes(q) || d.hook.toLowerCase().includes(q);
-    return matchesSeg && matchesQuery;
+    return matchesCat && matchesQuery;
   });
   return (
     <div style={{ maxWidth: 1180, margin: "0 auto", padding: "40px 24px 100px", textAlign: rtl ? "right" : "left" }}>
@@ -542,13 +568,13 @@ function CatalogView({ products, t, th, rtl, lang, onBack, onOpen }) {
           style={{ width: "100%", border: `1px solid ${th.borderStrong}`, borderRadius: 10, padding: "11px 14px", fontSize: 14, background: th.elevated, color: th.text, fontFamily: "inherit" }} />
       </div>
       <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 30 }}>
-        {segments.map((s) => (
-          <button key={s} className="filter-pill" onClick={() => setActiveSeg(s)} style={{
-            border: `1px solid ${activeSeg === s ? "#06B6D4" : th.borderStrong}`,
-            background: activeSeg === s ? "#06B6D41A" : th.elevated,
-            color: activeSeg === s ? "#06B6D4" : th.muted2,
+        {categories.map((c) => (
+          <button key={c} className="filter-pill" onClick={() => setActiveCat(c)} style={{
+            border: `1px solid ${activeCat === c ? CATEGORY_COLORS[c] || "#06B6D4" : th.borderStrong}`,
+            background: activeCat === c ? `${CATEGORY_COLORS[c] || "#06B6D4"}1A` : th.elevated,
+            color: activeCat === c ? (CATEGORY_COLORS[c] || "#06B6D4") : th.muted2,
             borderRadius: 20, padding: "7px 16px", fontSize: 13, fontWeight: 600, cursor: "pointer",
-          }}>{s === "all" ? t.allCategories : t.segLabels[s]}</button>
+          }}>{c === "all" ? t.allCategories : t.categoryLabels[c]}</button>
         ))}
       </div>
 
@@ -558,12 +584,13 @@ function CatalogView({ products, t, th, rtl, lang, onBack, onOpen }) {
         </p>
       ) : (
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill,minmax(250px,1fr))", gap: 18 }}>
-          {filtered.map((p) => { const d = p[lang]; const color = SEGMENT_COLORS[p.seg]; const Icon = p.icon; return (
+          {filtered.map((p) => { const d = p[lang]; const color = CATEGORY_COLORS[p.category]; const Icon = p.icon; return (
             <div key={p.id} className="card-hover" style={{ borderRadius: 16, padding: 20, background: th.elevated, border: `1px solid ${th.border}`, transition: "box-shadow .25s ease, border-color .25s ease, transform .25s ease" }}>
-              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 10 }}>
-                <div style={{ display: "flex", alignItems: "center", gap: 8 }}><span style={{ width: 6, height: 6, borderRadius: "50%", background: color }} /><span style={{ fontSize: 10.5, letterSpacing: 1, textTransform: "uppercase", color: th.muted3 }}>{t.segLabels[p.seg]}</span></div>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 8 }}>
+                <div style={{ display: "flex", alignItems: "center", gap: 8 }}><span style={{ width: 6, height: 6, borderRadius: "50%", background: color }} /><span style={{ fontSize: 10.5, letterSpacing: 1, textTransform: "uppercase", color: th.muted3 }}>{t.categoryLabels[p.category]}</span></div>
                 <span style={{ fontSize: 10, fontWeight: 600, color: "#06B6D4", background: "#06B6D41A", borderRadius: 6, padding: "2px 6px" }}>{deliveryLabel(p.id, t)}</span>
               </div>
+              <div style={{ marginBottom: 8 }}><AudienceBadge p={p} t={t} th={th} /></div>
               <h3 className="display" style={{ fontSize: 16, fontWeight: 700, margin: "0 0 6px" }}>{d.name}</h3>
               <p style={{ fontSize: 12.5, color: th.muted2, lineHeight: 1.5, minHeight: 36, margin: "0 0 10px" }}>{d.hook}</p>
               <MiniFlow fromIcon={Icon} fromColor={color} toIcon={p.outIcon} fromLabel={d.inLabel} toLabel={d.outLabel} th={th} automateLabel={t.automateLabel} />
@@ -585,9 +612,6 @@ function ContactSection({ t, th, rtl, lang, requestContext }) {
     setError(false); setSent(true);
     const payload = { ...form, source: requestContext.source, product_id: requestContext.product_id, language: lang };
     if (!REQUESTS_API.startsWith("REPLACE_WITH")) {
-      // Content-Type: text/plain is deliberate — it keeps this a CORS "simple request"
-      // (no preflight), which Apps Script web apps can't reliably answer. The body is
-      // still valid JSON; doPost on the other end parses it as JSON regardless.
       fetch(REQUESTS_API, {
         method: "POST",
         headers: { "Content-Type": "text/plain;charset=utf-8" },
